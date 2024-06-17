@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,12 +49,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function leaderboard(): BelongsTo {
-        return $this->belongsTo(Leaderboard::class);
+    public function leaderboard(): HasOne {
+        return $this->hasOne(Leaderboard::class);
     }
 
-    public function achievements(): HasMany {
-        return $this->hasMany(Achievement::class);
+    public function achievements(): BelongsToMany {
+        return $this->belongsToMany(Achievement::class);
+    }
+
+    public function quizstats(): hasMany {
+        return $this->hasMany(Quizstats::class);
     }
 
 

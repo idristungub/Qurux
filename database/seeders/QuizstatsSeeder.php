@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Achievement;
+use App\Models\Quizstats;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AchievementSeeder extends Seeder
+class QuizstatsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Achievement::factory(5)->create();
+
+        Quizstats::factory(20)->create();
     }
 }
