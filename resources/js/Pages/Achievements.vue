@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
 
 </script>
 
 <template>
-<h1>Quran Quest Homepage</h1>
+
 </template>
 
 <style scoped>

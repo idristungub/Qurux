@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leaderboards', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+        Schema::create('achievement_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('users_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('achievements_id')->constrained('achievements')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -23,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leaderboards');
-        Schema::dropIfExists('users');
-
+        Schema::dropIfExists('achievement_user');
     }
 };

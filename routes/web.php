@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\AdvanceQuizController;
+use App\Http\Controllers\EasyQuizController;
 use App\Http\Controllers\IslamicProfileController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ProfileController;
@@ -32,7 +34,7 @@ Route::get('/home', function () {
 // add middleware to check user is on
 // list the surahs and juz of quran here
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/quran-quest' ,function() {
         return Inertia::render('QuranQuestHome');
     })->name('quran-quest.home');
@@ -41,21 +43,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/achievements', [AchievementController::class, 'create'])->name('achievements.create');
 
     // Routes for two different difficulty works on POST request
-    Route::post('/quiz/{chapter}/{verse}/easy', function($chapter, $verse) {
-        return Inertia::render('QuizEasy', [$chapter => 'chapter', $verse => 'verse']);
-    })->name('quiz.easy');
+    Route::post('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'next'])->name('easyQuiz.next');
 
-    Route::post('/quiz/{chapter}/{verse}/advance', function($chapter, $verse) {
-        return Inertia::render('QuizAdvance', [$chapter => 'chapter', $verse => 'verse']);
-    })->name('quiz.advance');
+
+    Route::post('/quiz/advance/{chapter}/{verse}', [AdvanceQuizController::class, 'next'])->name('advanceQuiz.next');
 
     //bookmark and recent
-    Route::post('/quiz/{chapter}/{verse}/[difficulty]',[QuizController::class,'save'])->name('quiz.save');
+    Route::get('/quiz/easy/{chapter}/{verse}',[EasyQuizController::class,'bookmark'])->name('easyQuiz.bookmark');
+    Route::get('/quiz/easy/{chapter}/{verse}',[AdvanceQuizController::class,'bookmark'])->name('easyQuiz.bookmark');
 
     // model for achievements for points to be stored for the achievements specified
     // itll also check the health_status of user
     // used when the "check" button is pressed on the quiz
-    Route::post('/check/{chapter}/{verse}/{difficulty}',[AchievementController::class, 'store'])->name('achievements.store');
+    Route::post('/quiz/easy/{chapter}/{verse}',[EasyQuizController::class, 'store'])->name('easyQuiz.store');
+    Route::post('/quiz/advance/{chapter}/{verse}',[AdvanceQuizController::class, 'store'])->name('advanceQuiz.store');
 
     // leaderboard carries the users name and points
     Route::get('/leaderboard', [LeaderboardController::class, 'create'])->name('leaderboard.create');

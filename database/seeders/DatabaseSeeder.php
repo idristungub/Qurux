@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(UserSeeder::class);
-        $this->call(LeaderboardSeeder::class);
         $this->call(QuizstatsSeeder::class);
         $this->call(AchievementSeeder::class);
 

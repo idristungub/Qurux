@@ -49,15 +49,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function leaderboard(): HasOne {
-        return $this->hasOne(Leaderboard::class);
-    }
-
     public function achievements(): BelongsToMany {
         return $this->belongsToMany(Achievement::class);
     }
 
     public function quizstats(): hasMany {
+
         return $this->hasMany(Quizstats::class);
     }
 
