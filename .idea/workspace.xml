@@ -5,25 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Achievements.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Leaderboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/library/FetchData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Leaderboard.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AchievementFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/LeaderboardFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/0001_01_01_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/0001_01_01_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_11_143200_create_leaderboards_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/LeaderboardSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +238,13 @@
       <workItem from="1718723210875" duration="4441000" />
       <workItem from="1718794110024" duration="4469000" />
       <workItem from="1718875008694" duration="3524000" />
-      <workItem from="1719209036484" duration="598000" />
+      <workItem from="1719209036484" duration="3125000" />
+      <workItem from="1719415546756" duration="10061000" />
+      <workItem from="1720094911319" duration="17575000" />
+      <workItem from="1720117033797" duration="1350000" />
+      <workItem from="1720175101409" duration="6573000" />
+      <workItem from="1720253108484" duration="15495000" />
+      <workItem from="1720283850592" duration="19613000" />
     </task>
     <servers />
   </component>

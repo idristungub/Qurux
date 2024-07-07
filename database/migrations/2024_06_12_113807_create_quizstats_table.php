@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('chapter_title');
             $table->integer('chapter_number');
             $table->integer('verse_number');
+            $table->integer('juz_number')->default(null)->nullable();
             $table->string('difficulty');
-            $table->integer('health_status')->default(3);
             $table->boolean('bookmarked')->default(false);
             $table->timestamps();
         });
