@@ -126,6 +126,9 @@ class EasyQuizController extends Controller
         }
 
         $health = Auth::user()->health_status - 1;
+        $points = Auth::user()->points - 1;
+
+        $points->save();
         $health->save();
         if ($health == 0) {
             Auth::user()->update(['health_status' => 3]);

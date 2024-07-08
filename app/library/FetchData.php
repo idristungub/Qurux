@@ -8,6 +8,7 @@ class FetchData
 {
     protected $chapterData;
     protected $juzData;
+
     public function __construct() {
         $this->chapterData = [];
         $this->juzData = [];
@@ -22,7 +23,7 @@ class FetchData
         }
 
         for($verse = 1; $verse <= $totalVerses; $verse++) {
-            $responseVerse = Http::get('https://quranapi.pages.dev/api/{$chapter}/{$verse}');
+            $responseVerse = Http::get('https://quranapi.pages.dev/api/{$chapter}/{$verse}.json');
             if($responseVerse->successful()) {
                 $data = $responseVerse->json();
                 $verseData[] = [
@@ -74,6 +75,24 @@ class FetchData
 
         }
 
+    }
+
+    public function fetchRandomVerses($chapter) {
+        $orderedVerses = [];
+        // generate 4 verses from a random part of a chapter
+        $verseData = $this->fetchData->fetchVerses($chapter);
+        $total_verses = count($verseData);
+        $randomIndex = rand(0, $total_verses - 1);
+
+        for($i = $randomIndex; $i < $total_verses - 1; $i++) {
+            if(count($orderedVerses) <= 4) {
+                array_push($orderedVerses, $verseData[$i]);
+            } else {
+                break;
+            }
+        }
+
+        return $orderedVerses;
     }
 
 }

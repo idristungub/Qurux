@@ -16,24 +16,43 @@ class AdvanceQuizController extends Controller
     }
 
     public function next($chapter) {
-        // generate 4 verses from a random part of a chapter
         $verseData = $this->fetchData->fetchVerses($chapter);
-        $total_verses = count($verseData);
-        $randomIndex = rand(0, $total_verses - 1);
-
-        for($i = $randomIndex; $i < $total_verses - 1; $i+= 3) {
-            return Inertia::render('AdvanceQuiz', [
-                'random_verse' => $verseData[$i],
-                'chapter' => $chapter,
-                'audio' => $verseData['audio'],
-            ]);
-
-        }
+        $randomVersesList = $this->fetchData->fetchRandomVerses($chapter);
+        return Inertia::render('AdvanceQuiz', [
+            'verses' => $randomVersesList,
+            'chapter' => $chapter,
+            'audio' => $verseData['audio'],
+        ]);
 
     }
 
     public function check(Request $request, $chapter) {
+        $randomVersesList = $this->fetchData->fetchRandomVerses($chapter);
+        $verseData = $this->fetchData->fetchVerses($chapter);
         // checks the order of the verses 1-4
+        $choice1 = $request->choices['1'];
+        $choice2 = $request->choices['2'];
+        $choice3 = $request->choices['3'];
+        $choice4 = $request->choices['4'];
+
+        // get the
+
+        // check the values of these keys are equal to that of the list
+        if($choice1 == $randomVersesList[0]
+            && $choice2 == $randomVersesList[1]
+            && $choice3 == $randomVersesList[2]
+            && $choice4 == $randomVersesList[3]) {
+
+
+        }
+
+
+
+
+
+
+
+
 
 
         // request first verse number and last verse number

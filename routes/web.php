@@ -63,8 +63,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/quiz/advance/{juz}/{chapter}', [AdvanceQuizController::class, 'bookmark'])->name('AdvanceQuiz.bookmark');
 
     // skip route
-    Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [EasyQuizController::class, 'skip'])->name('easyQuiz.skip');
-    Route::get('/quiz/advance/{juz}/{chapter}/{verse}', [JuzAdvanceQuizController::class, 'skip'])->name('juzAdvanceQuiz.skip');
+    Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'skip'])->name('easyQuiz.skip');
+    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'skip'])->name('juzAdvanceQuiz.skip');
+
+    // skip route for juz
+    Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'skip'])->name('JuzEasyQuiz.skip');
+    Route::get('/quiz/advance/{juz}/{chapter}', [JuzAdvanceQuizController::class, 'skip'])->name('juzAdvanceQuiz.skip');
 
     // model for achievements for points to be stored for the achievements specified
     // itll also check the health_status of user

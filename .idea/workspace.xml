@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/library/FetchData.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/0001_01_01_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/0001_01_01_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/library/FetchData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/library/FetchData.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -244,7 +240,8 @@
       <workItem from="1720117033797" duration="1350000" />
       <workItem from="1720175101409" duration="6573000" />
       <workItem from="1720253108484" duration="15495000" />
-      <workItem from="1720283850592" duration="19613000" />
+      <workItem from="1720283850592" duration="22372000" />
+      <workItem from="1720433662848" duration="10461000" />
     </task>
     <servers />
   </component>
