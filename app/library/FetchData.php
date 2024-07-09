@@ -55,7 +55,7 @@ class FetchData
         }
     }
 
-    public function fetchJuz($chapter_id)
+    public function fetchJuz($chapter)
     {
         $responseJuz = Http::get("https://api.quran.com/api/v4/juzs");
         $data = $responseJuz->json();
@@ -63,8 +63,8 @@ class FetchData
         foreach ($data['juzs'] as $juz) {
 
             $chapters = $juz['verse_mapping'];
-            $firstverse = explode('-' ,$chapters[$chapter_id])[0];
-            $lastverse = explode('-' ,$chapters[$chapter_id])[1];
+            $firstverse = explode('-' ,$chapters[$chapter])[0];
+            $lastverse = explode('-' ,$chapters[$chapter])[1];
 
             return $this->juzData = [
                 'juzNumber' => $juz['juz_number'],

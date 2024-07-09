@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('chapter_title');
             $table->integer('chapter_number');
-            $table->integer('verse_number');
-            $table->integer('juz_number')->default(null)->nullable();
+            $table->integer('verse_number')->nullable();
+            $table->integer('juz_number')->nullable();
             $table->string('difficulty');
             $table->boolean('bookmarked')->default(false);
             $table->timestamps();

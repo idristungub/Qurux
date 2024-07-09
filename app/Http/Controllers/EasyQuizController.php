@@ -91,7 +91,7 @@ class EasyQuizController extends Controller
             'chapter_number' => $chapter,
             'verse_number' => $verse,
             'juz_number' => $juz,
-            'difficulty' => 'easy',
+            'difficulty' => 'Easy',
             'bookmarked' => 'true'
         ]);
 

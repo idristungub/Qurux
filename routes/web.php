@@ -60,11 +60,11 @@ Route::middleware('auth')->group(function () {
 
     // bookmark a surah/juz
     Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [EasyQuizController::class, 'bookmark'])->name('EasyQuiz.bookmark');
-    Route::get('/quiz/advance/{juz}/{chapter}', [AdvanceQuizController::class, 'bookmark'])->name('AdvanceQuiz.bookmark');
+    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'bookmark'])->name('AdvanceQuiz.bookmark');
 
-    // skip route
+    // skip route for surah
     Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'skip'])->name('easyQuiz.skip');
-    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'skip'])->name('juzAdvanceQuiz.skip');
+    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'skip'])->name('advanceQuiz.skip');
 
     // skip route for juz
     Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'skip'])->name('JuzEasyQuiz.skip');
