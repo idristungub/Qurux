@@ -28,7 +28,8 @@ class EasyQuizController extends Controller
             return Inertia::render('EasyQuiz', [
                 'verse' => $verseData[0],
                 'chapter_id' => $chapter,
-                'verse_id' => $verse]);
+                'verse_id' => $verse,
+                'audio' => $verseData['audio']]);
 
         }
     }
@@ -47,7 +48,12 @@ class EasyQuizController extends Controller
             return redirect()->route('quran-quest.home')->with('status', 'Try again later!');
         }
 
-        return Inertia::render('EasyQuiz', ['verse' => $verseData, 'nextVerse_id' => $nextVerse, 'chapter_id' => $chapter]);
+
+        return Inertia::render('EasyQuiz', [
+            'verse' => $verseData,
+            'nextVerse_id' => $nextVerse,
+            'chapter_id' => $chapter,
+            'audio' => $verseData['audio']]);
 
     }
 
@@ -67,6 +73,7 @@ class EasyQuizController extends Controller
 
         }
 
+
             // health points decrease by 1 if health reaches 0
         $health = Auth::user()->health_status - 1;
         $health->save();
@@ -78,40 +85,6 @@ class EasyQuizController extends Controller
 
     }
 
-    public function bookmark($juz, $chapter, $verse) {
-        // saving the verse number, difficulty, chapter number and change bookmarked to true
-
-        $user = Auth::user();
-        $chapterData = $this->fetchData->fetchChapter();
-
-
-        $bookmark = Quizstats::updateOrCreate([
-            'user_id' => $user->id,
-            'chapter_title' =>  $chapterData['chapter_title'],
-            'chapter_number' => $chapter,
-            'verse_number' => $verse,
-            'juz_number' => $juz,
-            'difficulty' => 'Easy',
-            'bookmarked' => 'true'
-        ]);
-
-        // count number of bookmarks for user
-        $bookmarksLength = Quizstats::where('user_id', $user->id)->where('bookmarked', true)->count();
-
-        // find the length of the bookmarked rows if 10 then achieved_points
-        if($bookmark) {
-            Achievement::where('achievement_title', 'Bookmark 10 Surahs/Juz')->increment('achieved_points', 1);
-            if($bookmarksLength == 10){
-                Achievement::where('achievement_title', 'Bookmark 10 Surahs/Juz')->update(['completed' => true]);
-                return response()->json(['status' => 'success', 'message' => 'Completed bookmarking 10 quizzes achievement!']);
-            }
-
-            return Inertia::render('QuranQuestHome', ['bookmark' => $bookmark]);
-        }
-
-
-
-    }
 
     public function skip($chapter, $verse) {
         $verseData = $this->fetchData->fetchVerses($chapter);
@@ -135,9 +108,14 @@ class EasyQuizController extends Controller
             return redirect()->route('quran-quest.home')->with('status', 'Good try better luck next time!');
         }
 
-        return Inertia::render('EasyQuiz', ['verse' => $verseData, 'nextVerse_id' => $nextVerse, 'chapter_id' => $chapter]);
+        return Inertia::render('EasyQuiz', [
+            'verse' => $verseData,
+            'nextVerse_id' => $nextVerse,
+            'chapter_id' => $chapter]);
 
     }
+
+
 
 
 

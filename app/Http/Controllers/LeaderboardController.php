@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,7 @@ use Inertia\Inertia;
 
 class LeaderboardController extends Controller
 {
-    public function create() {
+    public function create(Achievement $achievement) {
         // get current user 'username' and 'points'
         $currentUserName = Auth::user()->username;
         $currentUserPoints = Auth::user()->points;
@@ -17,8 +18,25 @@ class LeaderboardController extends Controller
             ->take(50)
             ->get(['username', 'points']);
 
-        return Inertia::render('Leaderboard', ['leaderboardUsers' => $leaderboardUsers,
+        $currentUserPosition = null;
+
+        foreach ($leaderboardUsers as $index => $user) {
+            if($user->username == $currentUserName) {
+                $currentUserPosition = $index + 1;
+                break;
+            }
+        }
+
+        if ($currentUserPosition == 3) {
+            $achievement->achieved_points = 1;
+            $achievement->save();
+        }
+
+
+        return Inertia::render('Leaderboard', [
+            'leaderboardUsers' => $leaderboardUsers,
             'currentUserName' => $currentUserName,
             'currentUserPoints' => $currentUserPoints]);
     }
+
 }

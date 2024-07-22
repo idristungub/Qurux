@@ -52,7 +52,7 @@ class QuizstatsFactory extends Factory
 
             self::$chapterData[] = [
                 'id' => $chapterdata['id'],
-                'chapter_title' => 'Surah ' . $chapterdata['name_simple'],
+                'chapter_title' =>  $chapterdata['name_simple'],
                 'verses_count' => $chapterdata['verses_count']
             ];
         }

@@ -9,26 +9,22 @@ use App\Http\Controllers\JuzEasyQuizController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Models\Quizstats;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 // home page/landing page
-Route::get('/home', function () {
-    return Inertia::render('Home');
+Route::get('/', function () {
+    return Inertia::render('Home', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register')
+    ]);
 } )->name('home');
 
 
@@ -37,10 +33,11 @@ Route::get('/home', function () {
 // list the surahs and juz of quran here
 
 Route::middleware('auth')->group(function () {
-    Route::get('/quran-quest' ,function() {
-        return Inertia::render('QuranQuestHome');
-    })->name('quran-quest.home');
+    Route::get('/quran-quest')->name('quran-quest.home');
 
+
+    // put this bookmarks in a resource route
+    Route::resource('bookmarks', 'BookmarkController');
 
 
 
@@ -48,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     // routes for getting the next verse for a specific surah
     Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
-    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'start'])->name('advanceQuiz.start');
+
 
     // routes for getting the next verse of chapter
     Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'next'])->name('easyQuiz.next');

@@ -25,13 +25,14 @@ class JuzEasyQuizController extends Controller
         if($request->input('juz_id') === $juzData['juzNumber']) {
 
             return Inertia::render('JuzEasyQuiz', [
-                'juz' => $juz,
+                'juz_id' => $juz,
                 'chapter_id' => $chapter,
                 'verse_id' => $verse,
                 'first_verse' => $verseData[0],
                 'first_chapter' => $chapterData]);
         }
     }
+
     public function next($juz, $chapter, $verse) {
         // check verse_id is = 1 first then increase by 1  and change the verse aswell but same chapter
         $juzData = $this->fetchData->fetchJuz($chapter);

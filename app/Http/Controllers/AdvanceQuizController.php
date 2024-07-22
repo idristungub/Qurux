@@ -48,7 +48,7 @@ class AdvanceQuizController extends Controller
             $points->save();
             return response()->json(['success' => true, 'you got all verses correct but not numbers of start to end verses correct!']);
 
-        } else if($choice1 == $randomVersesList[0]
+        } else if($choice1 == $randomVersesList[0]['actual_verse']
             && $choice2 == $randomVersesList[1]['actual_verse']
             && $choice3 == $randomVersesList[2]['actual_verse']
             && $choice4 == $randomVersesList[3]['actual_verse']
@@ -99,7 +99,7 @@ class AdvanceQuizController extends Controller
 
         return Inertia::render('AdvanceQuiz', [
             'verses' => $randomVersesList,
-            'chapter' => $chapter,
+            'chapter_id' => $chapter,
             'audio' => $verseData['audio'],
         ]);
 

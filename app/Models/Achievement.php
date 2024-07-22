@@ -18,7 +18,9 @@ class Achievement extends Model
     public function users(): BelongsToMany
     {
 
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot(['completed'])
+            ->withTimestamps();
 
     }
 

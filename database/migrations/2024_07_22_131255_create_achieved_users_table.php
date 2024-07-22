@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('achievement_user', function (Blueprint $table) {
             $table->id();
+            $table->boolean('completed')->default(false);
             $table->foreignId('users_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('achievements_id')->constrained('achievements')->cascadeOnDelete();
             $table->timestamps();
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievement_user');
+        Schema::dropIfExists('achieved_users');
     }
 };
