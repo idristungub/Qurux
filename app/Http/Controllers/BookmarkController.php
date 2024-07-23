@@ -25,7 +25,7 @@ class BookmarkController extends Controller
     {
         $bookmarks = Quizstats::where('bookmarked',true)->where('user_id', Auth::user()->id)->take(7)->get();
 
-        return Inertia::render('QuranQuestHome', ['bookmarks' => $bookmarks]);
+        return response()->json($bookmarks);
     }
 
 

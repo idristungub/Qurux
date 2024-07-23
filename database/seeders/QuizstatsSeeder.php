@@ -15,6 +15,6 @@ class QuizstatsSeeder extends Seeder
     public function run(): void
     {
 
-        Quizstats::factory(200)->create();
+        Quizstats::factory(10)->create();
     }
 }

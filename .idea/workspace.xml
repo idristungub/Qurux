@@ -5,47 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/boy knowledge.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/leaf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/JuzAdvanceQuiz.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmablePasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmablePasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/EmailVerificationNotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/EmailVerificationNotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerifyEmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerifyEmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzAdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzAdvanceQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProfileUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProfileUpdateRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Achievement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Achievement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/library/FetchData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/library/FetchData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_20_180022_create_achievement_user_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/HandleInertiaRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/HandleInertiaRequests.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/QuizstatsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/QuizstatsSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Dashboard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/ziggy.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/ziggy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +273,8 @@
       <workItem from="1721400041120" duration="15029000" />
       <workItem from="1721469567319" duration="8792000" />
       <workItem from="1721565538771" duration="4791000" />
-      <workItem from="1721649507624" duration="5982000" />
+      <workItem from="1721649507624" duration="25425000" />
+      <workItem from="1721738403934" duration="19617000" />
     </task>
     <servers />
   </component>

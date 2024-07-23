@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\AdvanceQuizController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\EasyQuizController;
 use App\Http\Controllers\IslamicProfileController;
 use App\Http\Controllers\JuzAdvanceQuizController;
@@ -33,11 +34,16 @@ Route::get('/', function () {
 // list the surahs and juz of quran here
 
 Route::middleware('auth')->group(function () {
-    Route::get('/quran-quest')->name('quran-quest.home');
+
+    Route::get('/quran-quest', function() {
+        return Inertia::render('QuranQuestHome');
+    })->name('quran-quest.home');
 
 
     // put this bookmarks in a resource route
-    Route::resource('bookmarks', 'BookmarkController');
+    Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
+    Route::post('bookmarks/{chapter}/{verse}/{juz}', [BookmarkController::class, 'store'])->name('bookmarks.store');
+    Route::delete('bookmarks/{id}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
 
 

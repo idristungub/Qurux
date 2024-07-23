@@ -14,10 +14,6 @@ return new class extends Migration
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
             $table->longText('achievement_title');
-            $table->integer('achieved_points')->default(0);
-            $table->integer('quantity');
-            $table->boolean('audio_checked')->default(false);
-            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

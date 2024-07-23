@@ -15,7 +15,7 @@ import NavBar from "@/Layouts/NavBar.vue";
         <p class="lg:text-[50px] text-[16px] lg:w-[677px] w-[251px] font-bold">Converse and Convene to gain knowledge of this <span class="text-[#D2B721] font-bold underline">faith</span> </p>
 
         <p class="lg:my-6 my-4 lg:w-[650px] lg:text-[16px] w-[150px] text-[11px]">Learn and improve your understanding of islam</p>
-        <Link class="bg-[#AAD2BA] lg:w-[200px] w-[120px] lg:h-[50px] h-[32px]  rounded-[10px] lg:py-3 py-1.5 lg:px-10 px-5 text-white font-bold lg:text-[20px] text-[14px]" href="/register" method="post">
+        <Link class="bg-[#AAD2BA] lg:w-[200px] w-[120px] lg:h-[50px] h-[32px]  rounded-[10px] lg:py-3 py-1.5 lg:px-10 px-5 text-white font-bold lg:text-[20px] text-[14px]" :href="route('register')">
             Get Started
         </Link>
     </div>
@@ -58,7 +58,7 @@ import NavBar from "@/Layouts/NavBar.vue";
                     </div>
 
 
-                    <Link class="bg-[#AAD2BA] lg:w-[200px] w-[120px] lg:h-[50px] h-[32px]  rounded-[10px] lg:py-3 py-1.5 lg:px-10 px-5 text-white font-bold lg:text-[20px] text-[14px] float-right" href="/quran-quest" method="get">
+                    <Link class="bg-[#AAD2BA] lg:w-[200px] w-[120px] lg:h-[50px] h-[32px]  rounded-[10px] lg:py-3 py-1.5 lg:px-10 px-5 text-white font-bold lg:text-[20px] text-[14px] float-right" :href="route('quran-quest.home')" >
                         Start Quest
                     </Link>
 
@@ -99,7 +99,7 @@ import NavBar from "@/Layouts/NavBar.vue";
         </div>
 
         <div class="bg-[#6B8F71] lg:w-[1200px] w-[355px] my-10 py-4 px-4 rounded-[20px] ">
-            <p class="font-bold text-white">“The variety of resources available here is astounding. From video lectures to interactive quizzes and downloadable materials from Knowledge Post, there's something for every type of learner”</p>
+            <p class="font-bold text-white">“The variety of resources available here is astounding.”</p>
             <p class="text-[#D2B721] font-bold">Daud Jarif, <br/>
                 Employee</p>
         </div>

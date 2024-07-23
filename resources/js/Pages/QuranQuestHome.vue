@@ -4,14 +4,7 @@ import NavBar from "@/Layouts/NavBar.vue";
 import {onMounted, reactive, ref} from "vue";
 import {Icon} from '@iconify/vue'
 import axios from "axios";
-
-// getting props from the backend
-
-defineProps({
-    bookmarks: Array
-})
-
-
+import ChapterQuizDialogMenu from "@/Components/ChapterQuizDialogMenu.vue";
 
 
 // handling recent and bookmarks
@@ -50,16 +43,51 @@ const handleChapters = () => {
     }
 }
 
-// delete quizzes from the bookmark
+// fetching and deleting bookmarks for current user
+const bookmarks = ref([])
+onMounted( () => {
+    axios.get('/bookmarks')
+        .then(bookmarkData => {
+            bookmarkData.data = bookmarks.value
+        })
+})
 
-
-const deleteBookmark =  async (id) => {
-    await axios.delete(`/delete-bookmark/${id}`)
-
+const deleteBookmarks = () => {
+    axios.delete(`/bookmarks/${id}`)
+        .then(bookmarks.remove(id))
+        .catch(err => console.log(err))
 }
 
+// toggle arrow icon
 
-// fetching juz of the quran
+const toggleArrow = ref(false)
+const orderName = ref('ASCENDING')
+const isToggle = () => {
+    toggleArrow.value = !toggleArrow.value
+    if(toggleArrow.value) {
+        orderName.value = 'DESCENDING'
+        chapterResponse.value = chapterResponse.value.slice().reverse()
+    } else {
+        orderName.value = 'ASCENDING'
+        chapterResponse.value = chapterResponse.value.slice().reverse()
+    }
+}
+
+// opening dialog menu of chapter or juz
+
+const isOpen = ref(false)
+const selectedChapter = ref(null)
+const openChapterDialogModal = (chapters) => {
+    isOpen.value = !isOpen.value
+    selectedChapter.value = chapters
+    console.log('is open is: ', isOpen.value)
+}
+
+// getting difficulty data
+const difficulty = ref('')
+const handleDifficulty = () => {
+    console.log(difficulty.value)
+}
 
 
 
@@ -77,14 +105,14 @@ const deleteBookmark =  async (id) => {
 
     <hr class="w-[1875px] h-1 bg-[#D2B721] mx-5">
 
-    <div class="flex w-[222px]" v-if="isBookmark">
+    <div class="flex w-[400px]" v-if="isBookmark">
         <div class="font-bold flex items-center" v-for="b in bookmarks" :key="b.id">
             <button class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
-            <button @click="deleteBookmark(b.id)" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
+            <button @click="deleteBookmarks" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
         </div>
 
-        <div v-if="bookmarks?.length === 0">
-            there is nothing
+        <div class="mx-5" v-if="bookmarks?.length === 0">
+            You do not have any bookmarks yet
         </div>
 
     </div>
@@ -99,17 +127,19 @@ const deleteBookmark =  async (id) => {
 
 <!--    selection container of quizzes-->
 
-    <div>
-        <div class="flex gap-2">
-            <span class="font-bold text-[16px]">SORT BY: ASCENDING</span>
-            <Icon icon="ri:arrow-up-s-line" class="text-[25px]" />
+    <div class="pl-5">
+        <div class="flex gap-2 float-right">
+            <span class="font-bold text-[16px]">SORT BY: {{orderName}} </span>
+            <button :class="{'rotate-180': toggleArrow}" @click="isToggle">
+                <Icon icon="ri:arrow-up-s-line" class="text-[25px]" />
+            </button>
 
         </div>
 
 <!--grid the results of chapters or juz-->
         <div v-if="isChapters" v-for="chapters in chapterResponse">
 <!--container-->
-            <button class="flex">
+            <button @click="openChapterDialogModal(chapters)" class="flex">
 <!--                inner container-->
                 <div>
                     <span>{{chapters.id}}</span>
@@ -124,9 +154,21 @@ const deleteBookmark =  async (id) => {
 
             </button>
 
+
+
         </div>
     </div>
 
+    <!--    dialog for chapters-->
+    <ChapterQuizDialogMenu v-if="isOpen" :close=" () => openChapterDialogModal(selectedChapter)" >
+        <div class="flex flex-col justify-center items-center">
+            <span class="text-white font-bold">{{selectedChapter.name_simple}}</span>
+            <span class="text-[#1D1E18] font-bold opacity-50">{{selectedChapter.translated_name.name}}</span>
+        </div>
+
+    </ChapterQuizDialogMenu>
+
+    <!--    dialog for Juz-->
 
 
 </template>

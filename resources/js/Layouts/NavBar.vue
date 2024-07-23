@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Link} from '@inertiajs/vue3'
 import {route} from "ziggy-js";
-import {ref} from "vue";
+import { ref} from "vue";
 
 
 const isMenuOpen = ref(false)
@@ -27,7 +27,7 @@ const toggleMenu = () => {
                 </Link>
 
                 <span class="hidden lg:block font-bold">
-                 {{ $page.props.auth.user.username }}
+                 {{ $page.props.auth.user.username }} (Points: {{$page.props.auth.user.points}})
                 </span>
 
                 <Link class="bg-[#AAD2BA] w-[100.83px] h-[42px] rounded-[10px] py-2.5 px-5 hidden lg:block " :href="route('logout')" method="post">
@@ -66,32 +66,29 @@ const toggleMenu = () => {
 
 <!--        menu drop down-->
         <div v-if="isMenuOpen" class="lg:hidden absolute flex flex-col items-center bg-[#6B8F71] w-full top-[90px] right-0 ">
-
-            <div v-if="$page.props.auth.user ">
-
-
+            <div v-if="$page.props.auth.user">
                 <div class="font-bold text-white">
                     <hr class="h-px my-5 bg-white border-0 w-[321.14px]">
-                    {{ $page.props.auth.user.username }}
+                    {{ $page.props.auth.user.username }} (Points: {{$page.props.auth.user.points}})
                 </div>
 
 
-                <hr class="h-px my-5 bg-white border-0 ">
+                <hr class="h-px my-5 bg-white border-0">
 
-                <Link class="text-white" :href="route('achievements')">
+                <Link class="text-white" :href="route('achievements.create')">
                     Achievement
                 </Link>
 
                 <hr class="h-px my-5 bg-white border-0 ">
 
-                <Link class="text-white" :href="route('leaderboard')">
+                <Link class="text-white" :href="route('leaderboard.create')">
                     Leaderboard
                 </Link>
 
 
                 <hr class="h-px my-5 bg-white border-0 ">
 
-                <Link class="bg-[#AAD2BA] w-[82.83px] h-[42px] rounded-[10px] py-2 px-5  " :href="route('logout')">
+                <Link class="bg-[#AAD2BA] w-[82.83px] h-[42px] rounded-[10px] py-2 px-5  " :href="route('logout')" method="post">
                     Log Out
                 </Link>
 
@@ -115,7 +112,7 @@ const toggleMenu = () => {
                 <div>
                     <hr class="h-px my-5 bg-white border-0 w-[321.14px]">
 
-                    <Link class="text-white" :href="route('quran-quest')">
+                    <Link class="text-white" :href="route('quran-quest.home')">
                         QuranQuest
                     </Link>
 
@@ -125,12 +122,6 @@ const toggleMenu = () => {
 
 
             </template>
-
-
-
-
-
-
 
 
         </div>

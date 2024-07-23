@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AchievedUser;
 use App\Models\Achievement;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,12 +13,14 @@ class LeaderboardController extends Controller
 {
     public function create(Achievement $achievement) {
         // get current user 'username' and 'points'
+        $idCountTwo = 0;
         $currentUserName = Auth::user()->username;
         $currentUserPoints = Auth::user()->points;
         $leaderboardUsers = User::orderBy('points', 'desc')
             ->take(50)
             ->get(['username', 'points']);
 
+        // achievements for id 3
         $currentUserPosition = null;
 
         foreach ($leaderboardUsers as $index => $user) {
@@ -28,8 +31,20 @@ class LeaderboardController extends Controller
         }
 
         if ($currentUserPosition == 3) {
-            $achievement->achieved_points = 1;
-            $achievement->save();
+            $idCountTwo += 1;
+            if($idCountTwo == 1) {
+                AchievedUser::create([
+                    'completed' => true,
+                    'user_id' => Auth::user()->id,
+                    'achievement_id' => 3
+                ]);
+
+                return Inertia::render('Achievements', [
+                    'idCountTwo' => $idCountTwo,
+                ]);
+            }
+
+
         }
 
 
