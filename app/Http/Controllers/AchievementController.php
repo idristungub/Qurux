@@ -46,9 +46,7 @@ class AchievementController extends Controller
         }
 
         return Inertia::render('Achievement', [
-            'countOne' => $idOneCount,
-            'countTwo' => $idTwoCount,
-            'countThree' => $idThreeCount,
+            'countOne' => $idOneCount
         ]);
     }
 

@@ -20,42 +20,17 @@ class EasyQuizController extends Controller
     }
 
 
-    public function start(Request $request, $chapter, $verse) {
-        $chapterData = $this->fetchData->fetchChapter();
-        $verseData = $this->fetchData->fetchVerses($chapter);
-        if($request->input('chapterTitle') == $chapterData['chapter_title']) {
+    public function start($chapter, $verse) {
 
-            return Inertia::render('EasyQuiz', [
-                'verse' => $verseData[0],
-                'chapter_id' => $chapter,
-                'verse_id' => $verse,
-                'audio' => $verseData['audio']]);
-
-        }
-    }
-
-    // this is for "continue" button not the "check" button
-    public function next($chapter, $verse) {
-        // check verse_id is = 1 first then increase by 1  and change the verse aswell but same chapter
-        $verseData = $this->fetchData->fetchVerses($chapter);
-        $chapterData = $this->fetchData->fetchChapter();
-
-        $totalVerses = $chapterData['verses_count'];
-
-        $nextVerse = $verseData['verse_id'] + 1;
-
-        if($verse > $totalVerses) {
-            return redirect()->route('quran-quest.home')->with('status', 'Try again later!');
-        }
-
-
-        return Inertia::render('EasyQuiz', [
-            'verse' => $verseData,
-            'nextVerse_id' => $nextVerse,
-            'chapter_id' => $chapter,
-            'audio' => $verseData['audio']]);
+        return Inertia::render('QuizEasy', [
+            'chapterId' => $chapter,
+            'verseId' => $verse,
+        ]);
 
     }
+
+
+
 
     public function check(Request $request, $chapter, $verse)
     {
@@ -108,10 +83,6 @@ class EasyQuizController extends Controller
             return redirect()->route('quran-quest.home')->with('status', 'Good try better luck next time!');
         }
 
-        return Inertia::render('EasyQuiz', [
-            'verse' => $verseData,
-            'nextVerse_id' => $nextVerse,
-            'chapter_id' => $chapter]);
 
     }
 

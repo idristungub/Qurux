@@ -40,7 +40,7 @@ class LeaderboardController extends Controller
                 ]);
 
                 return Inertia::render('Achievements', [
-                    'idCountTwo' => $idCountTwo,
+                    'countTwo' => $idCountTwo,
                 ]);
             }
 

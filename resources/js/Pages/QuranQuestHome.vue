@@ -48,7 +48,7 @@ const bookmarks = ref([])
 onMounted( () => {
     axios.get('/bookmarks')
         .then(bookmarkData => {
-            bookmarkData.data = bookmarks.value
+            bookmarks.value = bookmarkData.data
         })
 })
 
@@ -83,11 +83,7 @@ const openChapterDialogModal = (chapters) => {
     console.log('is open is: ', isOpen.value)
 }
 
-// getting difficulty data
-const difficulty = ref('')
-const handleDifficulty = () => {
-    console.log(difficulty.value)
-}
+
 
 
 
@@ -160,13 +156,15 @@ const handleDifficulty = () => {
     </div>
 
     <!--    dialog for chapters-->
-    <ChapterQuizDialogMenu v-if="isOpen" :close=" () => openChapterDialogModal(selectedChapter)" >
-        <div class="flex flex-col justify-center items-center">
-            <span class="text-white font-bold">{{selectedChapter.name_simple}}</span>
-            <span class="text-[#1D1E18] font-bold opacity-50">{{selectedChapter.translated_name.name}}</span>
-        </div>
+    <ChapterQuizDialogMenu v-if="isOpen"
+                           :close=" () => openChapterDialogModal(selectedChapter)"
+                           :arabic-name="selectedChapter.name_simple"
+                           :english-name="selectedChapter.translated_name.name"
+                           :chapter-id="selectedChapter.id"
+                           :verse-id="1"
 
-    </ChapterQuizDialogMenu>
+                          />
+
 
     <!--    dialog for Juz-->
 

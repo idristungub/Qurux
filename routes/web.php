@@ -10,6 +10,7 @@ use App\Http\Controllers\JuzEasyQuizController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\library\FetchData;
 use App\Models\Quizstats;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
@@ -45,28 +46,35 @@ Route::middleware('auth')->group(function () {
     Route::post('bookmarks/{chapter}/{verse}/{juz}', [BookmarkController::class, 'store'])->name('bookmarks.store');
     Route::delete('bookmarks/{id}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
+    //routes for checking and skipping easyquiz
+    Route::post('/check', [EasyQuizController::class, 'check'])->name('quiz.check');
+    Route::post('/skip', [EasyQuizController::class, 'skip'])->name('quiz.skip');
+
 
 
     Route::get('/achievements', [AchievementController::class, 'create'])->name('achievements.create');
+
 
     // routes for getting the next verse for a specific surah
     Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
 
 
-    // routes for getting the next verse of chapter
-    Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'next'])->name('easyQuiz.next');
-    Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'next'])->name('advanceQuiz.next');
+
+
+
+
+
 
     // routes for getting the next verse for a specific juz
     Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'next'])->name('juzEasyQuiz.next');
     Route::get('/quiz/advance/{juz}/{chapter}', [JuzAdvanceQuizController::class, 'next'])->name('juzAdvanceQuiz.next');
 
     // bookmark a surah/juz
-    Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [EasyQuizController::class, 'bookmark'])->name('EasyQuiz.bookmark');
+    Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [EasyQuizController::class, 'bookmark'])->name('easyQuiz.bookmark');
     Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'bookmark'])->name('AdvanceQuiz.bookmark');
 
     // skip route for surah
-    Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'skip'])->name('easyQuiz.skip');
+
     Route::get('/quiz/advance/{chapter}', [AdvanceQuizController::class, 'skip'])->name('advanceQuiz.skip');
 
     // skip route for juz

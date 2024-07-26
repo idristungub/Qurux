@@ -17,7 +17,7 @@ class AdvanceQuizController extends Controller
         $this->fetchData = $fetchData;
     }
 
-    public function next($chapter) {
+    public function index($chapter) {
         $verseData = $this->fetchData->fetchVerses($chapter);
         $randomVersesList = $this->fetchData->fetchRandomVerses($chapter);
         return Inertia::render('AdvanceQuiz', [
