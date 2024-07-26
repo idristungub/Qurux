@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 
 
     // routes for getting the next verse for a specific surah
-    Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
+    Route::get('/quiz/easy/{chapter}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
 
 
 

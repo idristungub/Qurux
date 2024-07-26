@@ -11,9 +11,7 @@ let props = defineProps( {
     },
     arabicName: String,
     englishName: String,
-    chapterNumber: Number,
-    chapterId: Number,
-    verseId: Number
+    chapterId: String
 })
 
 const openInfo = ref(true)
@@ -27,7 +25,7 @@ const difficulty = ref('easy')
 // get request to get the easy quiz/ advance quiz pages
 const startQuiz =  () => {
     if(difficulty.value == 'easy') {
-         router.get(`/quiz/easy/${props.chapterId}/${props.verseId}`)
+         router.get(`/quiz/easy/${props.chapterId}`)
     } else if (difficulty.value == 'advance') {
          router.get(`/quiz/advance/${props.chapterId}`)
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\library\FetchData;
 use App\Models\Achievement;
 use App\Models\Quizstats;
+use Faker\Core\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -20,11 +21,10 @@ class EasyQuizController extends Controller
     }
 
 
-    public function start($chapter, $verse) {
+    public function start($chapter) {
 
         return Inertia::render('QuizEasy', [
-            'chapterId' => $chapter,
-            'verseId' => $verse,
+            'chapterId' => $chapter
         ]);
 
     }

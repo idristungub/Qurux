@@ -160,8 +160,8 @@ const openChapterDialogModal = (chapters) => {
                            :close=" () => openChapterDialogModal(selectedChapter)"
                            :arabic-name="selectedChapter.name_simple"
                            :english-name="selectedChapter.translated_name.name"
-                           :chapter-id="selectedChapter.id"
-                           :verse-id="1"
+                           :chapter-id="Number(selectedChapter.id)"
+
 
                           />
 
