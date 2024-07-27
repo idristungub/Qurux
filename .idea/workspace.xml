@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/bookmarkicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/speaker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/voicesettings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/methods/shuffleArray.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/DropBox.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/methods/removeDuplicates.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/methods/reorderWordsInArray.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,28 +170,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.11.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.30&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Qurux/public/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Qurux\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "PHPUnit.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "20.11.1",
+    "javascript.nodejs.core.library.typings.version": "20.11.30",
+    "last_opened_file_path": "D:/Qurux/public/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "D:\\Qurux\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Qurux\public\assets" />
@@ -277,7 +276,8 @@
       <workItem from="1721940323313" duration="2829000" />
       <workItem from="1721988621845" duration="6811000" />
       <workItem from="1722007136402" duration="1377000" />
-      <workItem from="1722012289993" duration="9531000" />
+      <workItem from="1722012289993" duration="15373000" />
+      <workItem from="1722081183615" duration="11002000" />
     </task>
     <servers />
   </component>
