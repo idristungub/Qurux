@@ -43,8 +43,8 @@ Route::middleware('auth')->group(function () {
 
     // put this bookmarks in a resource route
     Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
-    Route::post('bookmarks/{chapter}/{verse}/{juz}', [BookmarkController::class, 'store'])->name('bookmarks.store');
-    Route::delete('bookmarks/{id}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+    Route::post('bookmarks/easy/{chapter}/{chapterName}/{verse}', [BookmarkController::class, 'storeEasy'])->name('bookmarks.storeEasy');
+    Route::delete('bookmarks/delete/{chapter}/{verse}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
     //routes for checking and skipping easyquiz
     Route::post('/check', [EasyQuizController::class, 'check'])->name('quiz.check');

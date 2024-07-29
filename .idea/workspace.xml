@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/DropBox.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/methods/removeDuplicates.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/methods/reorderWordsInArray.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +27,7 @@
       <list>
         <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -183,7 +183,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "D:\\Qurux\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -277,7 +277,10 @@
       <workItem from="1721988621845" duration="6811000" />
       <workItem from="1722007136402" duration="1377000" />
       <workItem from="1722012289993" duration="15373000" />
-      <workItem from="1722081183615" duration="11002000" />
+      <workItem from="1722081183615" duration="14924000" />
+      <workItem from="1722104222620" duration="611000" />
+      <workItem from="1722162334861" duration="21717000" />
+      <workItem from="1722203108397" duration="15032000" />
     </task>
     <servers />
   </component>
@@ -286,5 +289,9 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -52,11 +52,13 @@ onMounted( () => {
         })
 })
 
-const deleteBookmarks = () => {
-    axios.delete(`/bookmarks/${id}`)
-        .then(bookmarks.remove(id))
+const deleteBookmarks = (index: number) => {
+    const bookmarksToDelete = bookmarks.value[index]
+    axios.delete(`/bookmarks/delete/${bookmarksToDelete.chapter_number}/${bookmarksToDelete.verse_number}`)
+        .then(() => bookmarks.value.splice(index,1))
         .catch(err => console.log(err))
 }
+
 
 // toggle arrow icon
 
@@ -102,9 +104,9 @@ const openChapterDialogModal = (chapters) => {
     <hr class="w-[1875px] h-1 bg-[#D2B721] mx-5">
 
     <div class="flex w-[400px]" v-if="isBookmark">
-        <div class="font-bold flex items-center" v-for="b in bookmarks" :key="b.id">
+        <div class="font-bold flex items-center" v-for="(b, index) in bookmarks" :key="index">
             <button class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
-            <button @click="deleteBookmarks" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
+            <button @click="deleteBookmarks(index)" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
         </div>
 
         <div class="mx-5" v-if="bookmarks?.length === 0">

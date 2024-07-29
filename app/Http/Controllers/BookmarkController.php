@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\library\FetchData;
+use App\Models\AchievedUser;
 use App\Models\Achievement;
 use App\Models\Quizstats;
 use Illuminate\Http\Request;
@@ -32,39 +33,40 @@ class BookmarkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($chapter, $verse, $juz)
+    public function storeEasy($chapter, $chapterName, $verse)
     {
         // saving the verse number, difficulty, chapter number and change bookmarked to true
 
         $user = Auth::user();
-        $chapterData = $this->fetchData->fetchChapter();
 
 
-        $bookmarks = Quizstats::updateOrCreate([
+        Quizstats::updateOrCreate([
             'user_id' => $user->id,
-            'chapter_title' =>  $chapterData['chapter_title'],
+            'chapter_title' =>  $chapterName,
             'chapter_number' => $chapter,
             'verse_number' => $verse,
-            'juz_number' => $juz,
-            'difficulty' => 'Easy',
-            'bookmarked' => 'true'
+            'difficulty' => 'easy',
+            'bookmarked' => true
         ]);
 
         // count number of bookmarks for user
         $bookmarksLength = Quizstats::where('user_id', $user->id)->where('bookmarked', true)->count();
 
         // find the length of the bookmarked rows if 10 then achieved_points
-        if($bookmarks) {
-            Achievement::where('achievement_title', 'Bookmark 10 Surahs/Juz')->increment('achieved_points', 1);
-            if($bookmarksLength == 10){
-                $achievement = Achievement::where('achievement_title', 'Bookmark 10 Surahs/Juz');
-                $user->achievements()->attach($achievement->id, ['completed' => true]);
-
-                return response()->json(['status' => 'success', 'message' => 'Completed bookmarking 10 quizzes achievement!']);
-            }
-
-            return Inertia::render('QuranQuestHome', ['bookmarks' => $bookmarks]);
+        if($bookmarksLength == 10) {
+            $bookmarkAchievement = Achievement::where('id', '=', 4)->firstOrFail();
+            AchievedUser::updateOrCreate([
+                'completed' => true,
+                'users_id' => $user->id,
+                'achievements_id' => $bookmarkAchievement
+            ]);
         }
+
+        return response()->json(['message' => "You have bookmarked Surah $chapterName, verse $verse" ]);
+
+    }
+
+    public function storeAdvance($chapter, $chapterName, $verse) {
 
     }
 
@@ -72,11 +74,17 @@ class BookmarkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($chapter, $verse)
     {
-        $bookmarks = Quizstats::find($id);
-        if($bookmarks && $bookmarks->bookmarked == true){
-            $bookmarks->delete();
-        }
+        Quizstats::where('chapter_number', $chapter)
+            ->where('verse_number', $verse)
+            ->where('user_id', Auth::user()->id)
+            ->where('bookmarked', true)
+            ->delete();
+
+        return response()->json(['message' => "You have unbookmarked Surah $chapter, verse $verse" ]);
+
+
+
     }
 }
