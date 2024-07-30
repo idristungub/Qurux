@@ -62,7 +62,7 @@ class BookmarkController extends Controller
             ]);
         }
 
-        return response()->json(['message' => "You have bookmarked Surah $chapterName, verse $verse" ]);
+        return response()->json(['message' => "You have bookmarked Surah $chapter, verse $verse" ]);
 
     }
 

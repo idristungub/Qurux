@@ -1,61 +1,78 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import axios from "axios";
 import NavBar from "@/Layouts/NavBar.vue";
 import {shuffleArray} from "../../methods/shuffleArray";
 import {Icon} from "@iconify/vue";
+import {router} from "@inertiajs/vue3";
 
 
 let props = defineProps( {
-    chapterId: String
+    chapterId: String,
+    points_data: Number,
+    health_data: Number,
+    verseId:Number
+
 })
 
 
-const healthPoints = ref(3)
-const points = ref(0)
+const healthPoints = ref<number|undefined>(props.health_data)
+const points = ref<number|undefined>(props.points_data)
+
 
 
 
 
 // or fetch verses and audios from that chosen chapter
 const verses = ref({})
-const verseId = ref(1)
+const verseId = ref<number|undefined>(props.verseId)
 
-axios.get(`https://quranapi.pages.dev/api/${props.chapterId}/${verseId.value}.json`, {
-    headers: {
-        'X-Requested-With': null
-    }
-})
-    .then(response => {
-        const verseArabic = response.data.arabic1.trim().split(' ')
-
-        const verseArabicLong = verseArabic.reduce((acc: string[], value: string, index: number, array: string[]) => {
-            if (index % 2 === 0) {
-                if (index === array.length - 1) {
-                    acc.push(value);
-                } else {
-                    acc.push(value + ' ' + array[index + 1]);
-                }
-            }
-            return acc;
-        }, []);
-
-        console.log(verseArabicLong)
-        console.log(verseArabic)
-
-        verses.value = {
-            arabicName: response.data.surahName,
-            englishName: response.data.surahNameTranslation,
-            chapterId: props.chapterId,
-            verseId: verseId,
-            actual_verse: shuffleArray(verseArabicLong),
-            misharyAudio: response.data.audio[1].url,
-            totalVerse: response.data.totalAyah
+const fetchVerseData = async () => {
+    axios.get(`https://quranapi.pages.dev/api/${props.chapterId}/${verseId.value}.json`, {
+        headers: {
+            'X-Requested-With': null
         }
     })
+        .then(response => {
+            const verseArabic = response.data.arabic1.trim().split(' ')
 
-    .catch(err => console.log(err.message))
+            const verseArabicLong = verseArabic.reduce((acc: string[], value: string, index: number, array: string[]) => {
+                if (index % 2 === 0) {
+                    if (index === array.length - 1) {
+                        acc.push(value);
+                    } else {
+                        acc.push(value + ' ' + array[index + 1]);
+                    }
+                }
+                return acc;
+            }, []);
 
+            console.log(verseArabicLong)
+            console.log(verseArabic)
+
+            verses.value = {
+                arabicName: response.data.surahName,
+                englishName: response.data.surahNameTranslation,
+                chapterId: props.chapterId,
+                verseId: verseId,
+                actual_verse: shuffleArray(verseArabicLong),
+                answer: response.data.arabic1,
+                misharyAudio: response.data.audio[1].url,
+                totalVerse: response.data.totalAyah
+            }
+
+        })
+
+        .catch(err => console.log(err.message))
+
+}
+
+
+onMounted(() => {
+    fetchVerseData();
+});
+watch(verseId,fetchVerseData)
+console.log(watch(verseId,fetchVerseData))
 
 
 
@@ -99,6 +116,9 @@ const drop = (event: DragEvent, index: number) => {
 
 const reset = ref(false)
  const onDeleteWord = (words: string) => {
+    if(showCorrect.value == true || showIncorrect.value == true) {
+        return
+    }
     answers.value.splice(answers.value.indexOf(words), 1)
      verses.value.actual_verse.push(words)
      console.log('list of words are', verses.value.actual_verse)
@@ -119,15 +139,40 @@ const onDeleteAll = () => {
 
 // checking the answer of words in the div to match the actual_verse
 const showCorrect = ref(false)
+const showIncorrect = ref(false)
+const onFinish = ref(false)
 
-const checkAnswer = (answer: string[]) => {
-    const actual_answer = answer.join(' ')
-    if(actual_answer === verses.value.actual_verse) {
+const checkAnswer =  (answers: string[]) => {
+    const answerFirstIndex = ' ' + answers.join(' ')
+    const answerOtherIndexes = answers.join(' ')
+    console.log("users guess for first index: ", answerFirstIndex)
+    console.log("users guess for the rest: ", answerOtherIndexes)
+    console.log("the answer joined is: ", verses.value.answer)
+    if(answerFirstIndex === verses.value.answer || answerOtherIndexes == verses.value.answer) {
         showCorrect.value = true
+        showIncorrect.value = false
+        // audio correct noise will play when showCorrect is true
+        points.value++
+        axios.post('/check')
+
+
+
+    } else {
+        showIncorrect.value = true
+        showCorrect.value = false
+        // audio incorrect noise will play when showIncorrect is true
+        healthPoints.value = Math.max(0, healthPoints.value - 1)
+        if(healthPoints.value <= 0) {
+            onFinish.value = true
+            showIncorrect.value = false
+            showCorrect.value = false
+        }
     }
+
+
 }
 
-// check post request (health points changes, points changes,
+
 
 //post bookmarks function
 const isBookmarked = ref(false)
@@ -163,6 +208,22 @@ const toggleBookmarks = async () => {
 }
 
 // handle the continue button to increment verseId and show "Finish" when verseId reaches TotalAyah
+const handleNextVerse = () => {
+    if(verseId.value < verses.value.totalVerse) {
+        verseId.value++
+        showCorrect.value = false
+        showIncorrect.value = false
+        answers.value = []
+        router.get(`/quiz/easy/${props.chapterId}/${verseId.value}`)
+    } else{
+        onFinish.value = true
+
+        router.get('/quran-quest')
+    }
+
+
+}
+
 
 </script>
 
@@ -190,7 +251,11 @@ const toggleBookmarks = async () => {
                 <p> {{healthPoints}}</p>
             </div>
 
-            <p>Points: {{points}}</p>
+            <div class="flex items-end gap-5">
+                <p>Points: {{points}}</p>
+                <p v-if="showCorrect" class="text-[30px] text-green-600">+1</p>
+            </div>
+
             <p>Easy</p>
             <p>Verse: {{verseId}}</p>
         </div>
@@ -198,7 +263,9 @@ const toggleBookmarks = async () => {
         <div class="flex flex-col justify-center items-center ">
             <span class="text-[#1D1E18] text-[25px] font-bold">{{verses.arabicName}}</span>
             <span class="text-[#1D1E18] text-[20px] font-bold opacity-50">{{verses.englishName}}</span>
+            <span v-if="verseId==1" class="text-[40px] font-bold">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
         </div>
+
 
         <div class="flex flex-col">
             <button class="" @click="toggleBookmarks">
@@ -269,19 +336,27 @@ const toggleBookmarks = async () => {
 
 <!--    check and skip buttons-->
 <!--    new div opens when either skip or check is pressed-->
-    <div v-if="showCorrect">
+    <div v-if="showIncorrect">
         <img src="">
     </div>
 
-    <div  class="">
-        <img src="">
-        <button>
-            Continue
-        </button>
+    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full h-[90px] justify-between items-center pr-[50px] duration-500">
+
+        <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
+            <div class="flex gap-3 text-[40px] items-center pl-10 ">
+                <Icon class="text-green-600" icon="subway:tick" />
+                <p class="">Well Done! You got it correct</p>
+            </div>
+        <div>
+            <button @click.prevent="handleNextVerse" class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold">
+                Continue
+            </button>
+        </div>
+
     </div>
 
 
-    <div class="flex justify-between m-4 ">
+    <div v-if="!showCorrect && !showIncorrect" class="flex justify-between m-4">
         <button class="bg-[#D9D9D9] w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#6B8F71] font-bold  ">
             skip
         </button>
@@ -290,7 +365,7 @@ const toggleBookmarks = async () => {
             Reset
         </button>
 
-        <button  @click="checkAnswer(answers.value)" class="bg-[#6B8F71] w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold  ">
+        <button  @click="checkAnswer(answers)" class="bg-[#6B8F71] w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold  ">
             check
         </button>
     </div>

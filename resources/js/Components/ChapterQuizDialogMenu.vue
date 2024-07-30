@@ -25,7 +25,7 @@ const difficulty = ref('easy')
 // get request to get the easy quiz/ advance quiz pages
 const startQuiz =  () => {
     if(difficulty.value == 'easy') {
-         router.get(`/quiz/easy/${props.chapterId}`)
+         router.get(`/quiz/easy/${props.chapterId}/${1}`)
     } else if (difficulty.value == 'advance') {
          router.get(`/quiz/advance/${props.chapterId}`)
     }

@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('bookmarks/easy/{chapter}/{chapterName}/{verse}', [BookmarkController::class, 'storeEasy'])->name('bookmarks.storeEasy');
     Route::delete('bookmarks/delete/{chapter}/{verse}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
-    //routes for checking and skipping easyquiz
+    //routes for checking and skipping and storing easyquiz
     Route::post('/check', [EasyQuizController::class, 'check'])->name('quiz.check');
     Route::post('/skip', [EasyQuizController::class, 'skip'])->name('quiz.skip');
 
@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 
 
     // routes for getting the next verse for a specific surah
-    Route::get('/quiz/easy/{chapter}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
+    Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
 
 
 

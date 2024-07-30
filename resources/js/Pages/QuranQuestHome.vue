@@ -105,7 +105,7 @@ const openChapterDialogModal = (chapters) => {
 
     <div class="flex w-[400px]" v-if="isBookmark">
         <div class="font-bold flex items-center" v-for="(b, index) in bookmarks" :key="index">
-            <button class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
+            <button @click="router.get(`/quiz/easy/${b.chapter_number}/${b.verse_number}`)" class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
             <button @click="deleteBookmarks(index)" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
         </div>
 
