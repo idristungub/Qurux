@@ -10,6 +10,7 @@ use App\Http\Controllers\JuzEasyQuizController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\RecentController;
 use App\library\FetchData;
 use App\Models\Quizstats;
 use Illuminate\Foundation\Application;
@@ -41,10 +42,14 @@ Route::middleware('auth')->group(function () {
     })->name('quran-quest.home');
 
 
-    // put this bookmarks in a resource route
+    // put this bookmarks and recent route
     Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
     Route::post('bookmarks/easy/{chapter}/{chapterName}/{verse}', [BookmarkController::class, 'storeEasy'])->name('bookmarks.storeEasy');
     Route::delete('bookmarks/delete/{chapter}/{verse}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+
+    Route::get('recent', [RecentController::class, 'index'])->name('recent.index');
+    Route::post('recent/easy/{chapter}/{chapterName}/{verse}', [RecentController::class, 'storeEasy'])->name('recent.storeEasy');
+    Route::delete('recent/delete/{chapter}/{verse}', [RecentController::class, 'destroy'])->name('recent.destroy');
 
     //routes for checking and skipping and storing easyquiz
     Route::post('/check', [EasyQuizController::class, 'check'])->name('quiz.check');

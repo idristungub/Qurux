@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('juz_number')->nullable();
             $table->string('difficulty');
             $table->boolean('bookmarked')->default(false);
+            $table->boolean('recent')->default(false);
             $table->timestamps();
         });
     }

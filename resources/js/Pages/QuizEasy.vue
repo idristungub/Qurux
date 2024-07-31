@@ -10,13 +10,12 @@ import {router} from "@inertiajs/vue3";
 let props = defineProps( {
     chapterId: String,
     points_data: Number,
-    health_data: Number,
     verseId:Number
 
 })
 
 
-const healthPoints = ref<number|undefined>(props.health_data)
+const healthPoints = ref<number>(3)
 const points = ref<number|undefined>(props.points_data)
 
 
@@ -248,7 +247,11 @@ const handleNextVerse = () => {
         <div class="font-bold text-[25px] " >
             <div class="flex gap-4 items-center">
                 <img src="/assets/healthicon.png" class="w-[40px] h-[31px]">
-                <p> {{healthPoints}}</p>
+                <div class="flex items-end gap-5">
+                    <p> {{healthPoints}}</p>
+                    <p v-if="showIncorrect" class="text-[30px] text-red-700" >-1</p>
+                </div>
+
             </div>
 
             <div class="flex items-end gap-5">
