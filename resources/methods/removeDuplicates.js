@@ -1,3 +1,3 @@
-export const removeDuplicates = function (array) {
-    return array.value.filter((value, index) => array.indexOf(value) === index)
+export const removeDuplicates = (arr) => {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
 }

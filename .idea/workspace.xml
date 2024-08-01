@@ -6,10 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuizstatsFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/methods/removeDuplicates.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/methods/removeDuplicates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,6 +300,9 @@
       <workItem from="1722383654502" duration="388000" />
       <workItem from="1722384452753" duration="442000" />
       <workItem from="1722388675673" duration="623000" />
+      <workItem from="1722428412976" duration="24554000" />
+      <workItem from="1722475062793" duration="1162000" />
+      <workItem from="1722500563981" duration="9255000" />
     </task>
     <servers />
   </component>

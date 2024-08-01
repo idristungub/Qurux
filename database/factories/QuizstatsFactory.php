@@ -74,7 +74,8 @@ class QuizstatsFactory extends Factory
             'chapter_number' => $randomChapter['id'],
             'verse_number' => rand(1,$randomChapter['verses_count']),
             'difficulty' => fake()->randomElement(self::$difficulty),
-            'bookmarked' => fake()->randomElement([true, false])
+            'bookmarked' => fake()->randomElement([true, false]),
+            'recent' => fake()->randomElement([true, false]),
 
         ];
     }

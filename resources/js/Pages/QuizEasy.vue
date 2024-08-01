@@ -4,18 +4,19 @@ import axios from "axios";
 import NavBar from "@/Layouts/NavBar.vue";
 import {shuffleArray} from "../../methods/shuffleArray";
 import {Icon} from "@iconify/vue";
-import {router} from "@inertiajs/vue3";
+import {router, Link} from "@inertiajs/vue3";
 
 
 let props = defineProps( {
     chapterId: String,
     points_data: Number,
-    verseId:Number
+    health_data: Number,
+    verseId:String
 
 })
 
 
-const healthPoints = ref<number>(3)
+const healthPoints = ref<number|undefined>(props.health_data)
 const points = ref<number|undefined>(props.points_data)
 
 
@@ -24,7 +25,7 @@ const points = ref<number|undefined>(props.points_data)
 
 // or fetch verses and audios from that chosen chapter
 const verses = ref({})
-const verseId = ref<number|undefined>(props.verseId)
+const verseId = ref<string|undefined>(props.verseId)
 
 const fetchVerseData = async () => {
     axios.get(`https://quranapi.pages.dev/api/${props.chapterId}/${verseId.value}.json`, {
@@ -85,9 +86,9 @@ const playAudio = () => {
 
 const answers = ref<string[]>([])
 const isDragging = ref(false)
-
 const startDrag = (event: DragEvent, verseWord: string) => {
     isDragging.value = true
+
     if(event.dataTransfer) {
         event.dataTransfer.dropEffect = 'move'
         event.dataTransfer.effectAllowed = 'move'
@@ -96,6 +97,22 @@ const startDrag = (event: DragEvent, verseWord: string) => {
     }
 
 }
+
+const clickOnVerse = (event: MouseEvent, verseWord: string) => {
+    isDragging.value = false;
+
+
+        answers.value.push(verseWord)
+        verses.value.actual_verse = verses.value.actual_verse.filter(word => word !== verseWord);
+
+        console.log('answers are', answers.value)
+
+
+
+
+
+}
+
 
 const drop = (event: DragEvent, index: number) => {
     isDragging.value = false
@@ -152,20 +169,25 @@ const checkAnswer =  (answers: string[]) => {
         showIncorrect.value = false
         // audio correct noise will play when showCorrect is true
         points.value++
-        axios.post('/check')
+        axios.post('/checkPoints')
 
 
 
     } else {
+
         showIncorrect.value = true
         showCorrect.value = false
         // audio incorrect noise will play when showIncorrect is true
         healthPoints.value = Math.max(0, healthPoints.value - 1)
+        axios.post('/checkHealth')
+            .then(response => console.log(response.data.health_status))
+            .catch(err => console.log(err.data.error))
         if(healthPoints.value <= 0) {
             onFinish.value = true
             showIncorrect.value = false
             showCorrect.value = false
         }
+
     }
 
 
@@ -214,10 +236,9 @@ const handleNextVerse = () => {
         showIncorrect.value = false
         answers.value = []
         router.get(`/quiz/easy/${props.chapterId}/${verseId.value}`)
-    } else{
-        onFinish.value = true
-
-        router.get('/quran-quest')
+    } else if(healthPoints.value == 0) {
+            router.get('/quran-quest')
+            onFinish.value = true
     }
 
 
@@ -231,56 +252,56 @@ const handleNextVerse = () => {
     <NavBar/>
 
 <!--    alert messages-->
-    <div v-if="showAlert1" class="p-4 mb-4 text-sm rounded-lg  bg-[#B9F5D8] text-[#1D1E18] absolute top-[8%] right-[47%] duration-500" role="alert">
+    <div v-if="showAlert1" class="p-4 mb-4 text-sm rounded-lg  bg-[#B9F5D8] text-[#1D1E18] absolute top-[8%]  lg:right-[47%] right-[20%] duration-500" role="alert">
         <span class="font-medium">Success alert! {{ bookmarkAlert }}</span>
     </div>
 
-    <div v-if="showAlert2" class="p-4 mb-4 text-sm rounded-lg  bg-red-400 text-[#1D1E18] absolute top-[8%] right-[47%] duration-500" role="alert">
+    <div v-if="showAlert2" class="p-4 mb-4 text-sm rounded-lg  bg-red-400 text-[#1D1E18] absolute top-[8%] lg:right-[47%] right-[20%] duration-500" role="alert">
         <span class="font-medium">Delete alert! {{ deleteBookmarkAlert }}</span>
     </div>
 
 
 <!--   main top body -->
 
-    <div class="flex justify-between m-4">
+    <div class="flex justify-between m-2">
 
-        <div class="font-bold text-[25px] " >
+        <div class="font-bold lg:text-[25px]  " >
             <div class="flex gap-4 items-center">
-                <img src="/assets/healthicon.png" class="w-[40px] h-[31px]">
+                <img src="/assets/healthicon.png" class="lg:w-[40px] lg:h-[31px] w-[20px] ">
                 <div class="flex items-end gap-5">
                     <p> {{healthPoints}}</p>
-                    <p v-if="showIncorrect" class="text-[30px] text-red-700" >-1</p>
+                    <p v-if="showIncorrect" class="lg:text-[30px] text-red-700" >-1</p>
                 </div>
 
             </div>
 
             <div class="flex items-end gap-5">
                 <p>Points: {{points}}</p>
-                <p v-if="showCorrect" class="text-[30px] text-green-600">+1</p>
+                <p v-if="showCorrect" class="lg:text-[30px] text-[16px] text-green-600">+1</p>
             </div>
 
             <p>Easy</p>
             <p>Verse: {{verseId}}</p>
         </div>
 
-        <div class="flex flex-col justify-center items-center ">
-            <span class="text-[#1D1E18] text-[25px] font-bold">{{verses.arabicName}}</span>
-            <span class="text-[#1D1E18] text-[20px] font-bold opacity-50">{{verses.englishName}}</span>
-            <span v-if="verseId==1" class="text-[40px] font-bold">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
+        <div class="flex flex-col justify-center items-center lg:pb-[10px] pb-[80px] ">
+            <span class="text-[#1D1E18] lg:text-[25px] text-[20px] font-bold">{{verses.arabicName}}</span>
+            <span class="lg:text-[20px] text-[16px] font-bold text-gray-500">{{verses.englishName}}</span>
+            <span v-if="verseId==1" class="lg:text-[40px] text-[25px] font-bold">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
         </div>
 
 
         <div class="flex flex-col">
-            <button class="" @click="toggleBookmarks">
-                <Icon v-if="!isBookmarked" icon="material-symbols:bookmark-outline" class="w-[85px] h-[100px]" />
-                <Icon v-if="isBookmarked" icon="material-symbols:bookmark" class="w-[85px] h-[100px]" />
+            <button class="flex justify-end" @click="toggleBookmarks">
+                <Icon v-if="!isBookmarked" icon="material-symbols:bookmark-outline" class="lg:w-[85px] w-[43px] lg:h-[100px] h-[44px]" />
+                <Icon v-if="isBookmarked" icon="material-symbols:bookmark" class="lg:w-[85px] w-[43px] lg:h-[100px] h-[44px]" />
             </button>
 
 
             <audio v-if="audioPlayed" autoplay :src="verses.misharyAudio"></audio>
 
-            <button @click="playAudio" >
-                <img src="/assets/speaker.png">
+            <button class="flex justify-end" @click="playAudio" >
+                <img class="lg:w-[90px] w-[50px]" src="/assets/speaker.png">
             </button>
 
         </div>
@@ -290,11 +311,11 @@ const handleNextVerse = () => {
 
 
 <!--    body to center the dropzone and dragzone-->
-    <div class="flex justify-center flex-col items-center space-y-10">
+    <div class="flex justify-center flex-col items-center space-y-10 ">
         <!--  the answer user of the verse - dropzone  -->
 
 
-        <div  title="answer"  @drop="drop($event, index)" class=" w-[1200px] h-[400px] overflow-y-scroll  bg-horizontal-stripes " @dragenter.prevent @dragover.prevent>
+        <div  title="answer"  @drop="drop($event, index)" class=" lg:w-[1200px] w-[325px] h-[400px] overflow-y-scroll  bg-horizontal-stripes " @dragenter.prevent @dragover.prevent>
 
             <div dir="rtl" class="flex flex-wrap p-2 bg-amber-300  bg-horizontal-stripes ">
 
@@ -304,7 +325,7 @@ const handleNextVerse = () => {
                          class="bg-[#AAD2BA] w-fit flex flex-grow justify-center items-center break-words rounded-[10px] m-5 p-4 cursor-grab"
                          @dragstart="startDrag($event, v)"
                          @click="onDeleteWord(v)">
-                        <p class="text-[40px] ">{{v}}</p>
+                        <p class="lg:text-[40px] text-[20px] ">{{v}}</p>
                     </div>
                 </div>
 
@@ -317,7 +338,7 @@ const handleNextVerse = () => {
 
 
         <!--verse turn it into blocks - dragzone -->
-        <div title="words" @drop="drop($event, index)" class=" w-[1200px] h-[120px] overflow-y-scroll" @dragenter.prevent @dragover.prevent>
+        <div title="words" @drop="drop($event, index)" class=" lg:w-[1200px] h-[120px] overflow-y-scroll" @dragenter.prevent @dragover.prevent>
 
 
             <div class=" flex flex-wrap justify-end p-2">
@@ -326,9 +347,10 @@ const handleNextVerse = () => {
                      draggable="true"
                      @dragenter.prevent
                      @dragover.prevent
-                     class="bg-[#AAD2BA] w-fit  justify-center items-center break-words rounded-[10px] m-2 p-4 cursor-grab "
-                     @dragstart="startDrag($event, v)">
-                    <p class="text-[40px] ">{{v}}</p>
+                     class="bg-[#AAD2BA] w-fit flex  justify-center items-center break-words rounded-[10px] m-2 p-4 cursor-grab "
+                     @dragstart="startDrag($event, v)" @click="clickOnVerse($event, v)">
+
+                    <p class="lg:text-[40px] text-[20px]">{{v}}</p>
                 </div>
             </div>
 
@@ -339,36 +361,65 @@ const handleNextVerse = () => {
 
 <!--    check and skip buttons-->
 <!--    new div opens when either skip or check is pressed-->
-    <div v-if="showIncorrect">
-        <img src="">
+
+    <div v-if="onFinish" class="flex  bg-red-400 w-full h-[100px] justify-between items-center pr-[50px] duration-500">
+
+        <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
+            <Icon icon="raphael:cross" class="text-red-600 " />
+            <p>Hmmm... Better luck next time!</p>
+        </div>
+        <div>
+            <Link :href="route('quiz.resetHealth')" class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Finish
+            </Link>
+        </div>
+
+
     </div>
 
-    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full h-[90px] justify-between items-center pr-[50px] duration-500">
 
-        <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
-            <div class="flex gap-3 text-[40px] items-center pl-10 ">
-                <Icon class="text-green-600" icon="subway:tick" />
-                <p class="">Well Done! You got it correct</p>
-            </div>
+    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+        <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
+            <Icon icon="raphael:cross" class="text-red-600" />
+            <p>Oh No! You got it wrong (watch your health!)</p>
+        </div>
         <div>
-            <button @click.prevent="handleNextVerse" class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold">
+            <button @click.prevent="handleNextVerse" class=" lg:w-[243px] w-[120px] lg:h-[73px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
                 Continue
             </button>
         </div>
 
     </div>
 
+    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
-    <div v-if="!showCorrect && !showIncorrect" class="flex justify-between m-4">
-        <button class="bg-[#D9D9D9] w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#6B8F71] font-bold  ">
+        <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
+            <div class="flex gap-3 lg:text-[40px] items-center pl-10 ">
+                <Icon class="text-green-600" icon="subway:tick" />
+                <p>Well Done! You got it correct</p>
+            </div>
+        <div>
+            <button @click.prevent="handleNextVerse" class=" lg:w-[243px] w-[120px] lg:h-[73px]  rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div v-if="!showCorrect && !showIncorrect && !onFinish" class="flex justify-between m-4 gap-5">
+        <button @click="checkAnswer(answers)" class="bg-[#D9D9D9] lg:w-[243px] w-[99px] lg:h-[73px] h-[35px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#6B8F71] font-bold  ">
             skip
         </button>
 
-        <button class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold" v-if="answers.length" @click="onDeleteAll">
+        <button class=" lg:w-[243px] w-[99px]  lg:h-[73px]  h-[35px]  rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold" v-if="answers.length" @click="onDeleteAll">
             Reset
         </button>
 
-        <button  @click="checkAnswer(answers)" class="bg-[#6B8F71] w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] text-[25px] text-[#1D1E18] font-bold  ">
+        <button  @click="checkAnswer(answers)" class="bg-[#6B8F71] lg:w-[243px] w-[99px] lg:h-[73px] h-[35px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold  ">
             check
         </button>
     </div>

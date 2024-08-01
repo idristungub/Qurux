@@ -11,7 +11,7 @@ let props = defineProps( {
     },
     arabicName: String,
     englishName: String,
-    chapterId: String
+    chapterId: Number
 })
 
 const openInfo = ref(true)
@@ -23,8 +23,10 @@ const infoBox = () => {
 const difficulty = ref('easy')
 
 // get request to get the easy quiz/ advance quiz pages
-const startQuiz =  () => {
+const startQuiz = async () => {
     if(difficulty.value == 'easy') {
+         await axios.post(`/recent/easy/${props.chapterId}/${props.arabicName}/${1}`)
+             .catch(err => console.log(err))
          router.get(`/quiz/easy/${props.chapterId}/${1}`)
     } else if (difficulty.value == 'advance') {
          router.get(`/quiz/advance/${props.chapterId}`)

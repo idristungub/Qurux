@@ -12,7 +12,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-    <div class=" sticky top-0 left-0 flex justify-between items-center  bg-[#6B8F71] w-full h-[99px] px-6">
+    <div class=" sticky top-0 left-0 flex justify-between items-center  bg-[#6B8F71] w-full lg:h-[99px] h-[60px] px-6">
         <p class="text-[20px] font-bold">Qurux</p>
         <div class="flex items-center gap-10 text-white ">
             <div v-if="$page.props.auth.user" class="flex items-center gap-6" >
@@ -65,13 +65,21 @@ const toggleMenu = () => {
         </div>
 
 <!--        menu drop down-->
-        <div v-if="isMenuOpen" class="lg:hidden absolute flex flex-col items-center bg-[#6B8F71] w-full top-[90px] right-0 ">
+        <div v-if="isMenuOpen" class="lg:hidden absolute flex flex-col items-center bg-[#6B8F71] w-full lg:top-[90px] top-[60px] right-0 ">
             <div v-if="$page.props.auth.user">
+
+                <hr class="h-px my-5 bg-white border-0">
+
+                <Link class="text-white" :href="route('quran-quest.home')">
+                    QuranQuest
+                </Link>
+
+
+
                 <div class="font-bold text-white">
                     <hr class="h-px my-5 bg-white border-0 w-[321.14px]">
                     {{ $page.props.auth.user.username }} (Points: {{$page.props.auth.user.points}})
                 </div>
-
 
                 <hr class="h-px my-5 bg-white border-0">
 

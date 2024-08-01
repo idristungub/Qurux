@@ -46,7 +46,8 @@ class BookmarkController extends Controller
             'chapter_number' => $chapter,
             'verse_number' => $verse,
             'difficulty' => 'easy',
-            'bookmarked' => true
+            'bookmarked' => true,
+            'recent' => false
         ]);
 
         // count number of bookmarks for user

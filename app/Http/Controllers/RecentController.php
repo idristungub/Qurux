@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class RecentController extends Controller
 {
     public function index() {
-        $recent = Quizstats::where('recent',true)->where('user_id', Auth::user()->id)->take(7)->get();
+        $recent = Quizstats::where('recent',true)->where('user_id', Auth::user()->id)->take(4)->get();
         return response()->json($recent);
     }
 
-    public function storeEasy($chapterName, $chapter, $verse)
+    public function storeEasy( $chapter,$chapterName, $verse)
     {
         $user = Auth::user();
 

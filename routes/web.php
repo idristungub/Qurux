@@ -52,8 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('recent/delete/{chapter}/{verse}', [RecentController::class, 'destroy'])->name('recent.destroy');
 
     //routes for checking and skipping and storing easyquiz
-    Route::post('/check', [EasyQuizController::class, 'check'])->name('quiz.check');
-    Route::post('/skip', [EasyQuizController::class, 'skip'])->name('quiz.skip');
+    Route::post('/checkPoints', [EasyQuizController::class, 'checkPoints'])->name('quiz.checkPoints');
+    Route::post('/checkHealth', [EasyQuizController::class, 'checkHealth'])->name('quiz.checkHealth');
+    Route::get('/resetHealth', [EasyQuizController::class, 'resetHealth'])->name('quiz.resetHealth');
 
 
 
@@ -71,7 +72,7 @@ Route::middleware('auth')->group(function () {
 
 
     // routes for getting the next verse for a specific juz
-    Route::get('/quiz/easy/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'next'])->name('juzEasyQuiz.next');
+    Route::get('/quiz/easy/juz/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'start'])->name('juzEasyQuiz.start');
     Route::get('/quiz/advance/{juz}/{chapter}', [JuzAdvanceQuizController::class, 'next'])->name('juzAdvanceQuiz.next');
 
     // bookmark a surah/juz

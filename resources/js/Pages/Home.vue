@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Link} from '@inertiajs/inertia-vue3'
+import {Link} from '@inertiajs/vue3'
 import {route} from "ziggy-js";
 import NavBar from "@/Layouts/NavBar.vue";
 
@@ -31,8 +31,6 @@ import NavBar from "@/Layouts/NavBar.vue";
 
     <div class="flex justify-center items-center px-10  lg:my-[100px] my-[50px] mx-9">
         <div class=" flex lg:w-[500px] w-[314px] lg:h-[761px] h-[574px] bg-[#6B8F71] lg:px-20 px-5 py-12 items-start rounded-[20px] ">
-
-
 
 <!--            quran quest info-->
 
