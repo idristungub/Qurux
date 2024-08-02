@@ -161,7 +161,22 @@ const openJuzDialogModal = (juz: any) => {
 
 }
 
+// route to juz or chapters
+const routeToRecentJuzOrChapter = (recent:string[]) => {
+    if(recent.juz_number != null) {
+        router.get(`quiz/easy/juz/${recent.juz_number}/${recent.chapter_number}/${recent.verse_number}`)
+    } else {
+        router.get(`/quiz/easy/${recent.chapter_number}/${recent.verse_number}`)
+    }
+}
 
+const routeToBookmarkJuzOrChapter = (bookmark:string[]) => {
+    if(bookmark.juz_number != null) {
+        router.get(`quiz/easy/juz/${bookmark.juz_number}/${bookmark.chapter_number}/${bookmark.verse_number}`)
+    } else {
+        router.get(`/quiz/easy/${bookmark.chapter_number}/${bookmark.verse_number}`)
+    }
+}
 
 
 </script>
@@ -181,7 +196,7 @@ const openJuzDialogModal = (juz: any) => {
 
     <div class="flex lg:w-full w-[370px] overflow-x-scroll scrollbar-webkit " v-if="isBookmark">
         <div class="font-bold flex  items-center " v-for="(b, index) in bookmarks" :key="index">
-            <button @click="router.get(`/quiz/easy/${b.chapter_number}/${b.verse_number}`)" class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
+            <button @click="routeToBookmarkJuzOrChapter(b)" class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{b.chapter_title}} {{b.juz_number}}:{{b.chapter_number}}:{{b.verse_number}} ({{b.difficulty}})</button>
             <button @click="deleteBookmarks(index)" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
         </div>
 
@@ -192,7 +207,7 @@ const openJuzDialogModal = (juz: any) => {
 
     <div class="flex lg:w-full w-[370px] overflow-x-scroll scrollbar-webkit" v-if="isRecent">
         <div class="font-bold flex items-center" v-for="(r, index) in recents" :key="index">
-            <button @click="router.get(`/quiz/easy/${r.chapter_number}/${r.verse_number}`)" class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{r.chapter_title}} {{r.chapter_number}}:{{r.verse_number}} ({{r.difficulty}})</button>
+            <button @click="routeToRecentJuzOrChapter(r)" class="text-[16px] w-[230px] hover:text-[#AAD2BA] duration-500 ">{{r.chapter_title}} {{r.juz_number}}:{{r.chapter_number}}:{{r.verse_number}} ({{r.difficulty}})</button>
             <button @click="deleteRecents(index)" class="hover:text-[red]"><Icon class="text-[30px]" icon="basil:cross-solid" /> </button>
         </div>
 

@@ -47,13 +47,18 @@ Route::middleware('auth')->group(function () {
 
     // put this bookmarks and recent route
     Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
-    Route::post('bookmarks/easy/{chapter}/{chapterName}/{verse}', [BookmarkController::class, 'storeEasy'])->name('bookmarks.storeEasy');
+
+
+    Route::post('bookmarks/easy/{chapter}/{chapterName}/{verse}', [BookmarkController::class, 'storeChapterEasy'])->name('bookmarks.storeChapterEasy');
+    Route::post('bookmarks/easy/juz/{juz}/{chapter}/{verse}', [BookmarkController::class, 'storeJuzEasy'])->name('bookmarks.storeJuzEasy');
+
+
     Route::delete('bookmarks/delete/{chapter}/{verse}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
     Route::get('recent', [RecentController::class, 'index'])->name('recent.index');
 
-    Route::post('recent/easy/{chapter}/{chapterName}/{verse}', [RecentController::class, 'storeEasy'])->name('recent.storeEasy');
-    Route::post('recent/easy/juz/{juz}/{chapter}/{verse}', [RecentController::class, 'storeJuz'])->name('recent.storeJuz');
+    Route::post('recent/easy/{chapter}/{chapterName}/{verse}', [RecentController::class, 'storeChapterEasy'])->name('recent.storeChapterEasy');
+    Route::post('recent/easy/juz/{juz}/{chapter}/{verse}', [RecentController::class, 'storeJuzEasy'])->name('recent.storeJuzEasy');
 
     Route::delete('recent/delete/{chapter}/{verse}', [RecentController::class, 'destroy'])->name('recent.destroy');
 

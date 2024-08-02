@@ -13,7 +13,7 @@ class RecentController extends Controller
         return response()->json($recent);
     }
 
-    public function storeEasy( $chapter,$chapterName, $verse)
+    public function storeChapterEasy( $chapter,$chapterName, $verse)
     {
         $user = Auth::user();
 
@@ -30,8 +30,22 @@ class RecentController extends Controller
 
     }
 
-    public function storeJuz($juz, $chapter, $verse)
+    public function storeJuzEasy($juz, $chapter, $verse)
     {
+
+        $user = Auth::user();
+
+
+        Quizstats::updateOrCreate([
+            'user_id' => $user->id,
+            'chapter_number' => $chapter,
+            'verse_number' => $verse,
+            'difficulty' => 'easy',
+            'juz_number' => $juz,
+            'bookmarked' => false,
+            'recent' => true
+        ]);
+
 
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('quizstats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('chapter_title');
+            $table->string('chapter_title')->nullable();
             $table->integer('chapter_number');
             $table->integer('verse_number')->nullable();
             $table->integer('juz_number')->nullable();

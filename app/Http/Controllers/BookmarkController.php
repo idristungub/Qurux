@@ -12,11 +12,6 @@ use Inertia\Inertia;
 
 class BookmarkController extends Controller
 {
-    protected $fetchData;
-
-    public function __construct(FetchData $fetchData) {
-        $this->fetchData = $fetchData;
-    }
 
 
     /**
@@ -33,7 +28,7 @@ class BookmarkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeEasy($chapter, $chapterName, $verse)
+    public function storeChapterEasy($chapter, $chapterName, $verse)
     {
         // saving the verse number, difficulty, chapter number and change bookmarked to true
 
@@ -66,6 +61,25 @@ class BookmarkController extends Controller
         return response()->json(['message' => "You have bookmarked Surah $chapter, verse $verse" ]);
 
     }
+
+
+    public function storeJuzEasy($juz, $chapter, $verse)
+    {
+        $user = Auth::user();
+
+        Quizstats::updateOrCreate([
+            'user_id' => $user->id,
+            'chapter_number' => $chapter,
+            'verse_number' => $verse,
+            'juz_number' => $juz,
+            'difficulty' => 'easy',
+            'bookmarked' => true,
+            'recent' => false
+        ]);
+
+        return response()->json(['message' => "You have bookmarked Juz $juz, Surah $chapter and verse $verse" ]);
+    }
+
 
     public function storeAdvance($chapter, $chapterName, $verse) {
 
