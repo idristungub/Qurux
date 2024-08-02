@@ -6,6 +6,7 @@ import {Icon} from '@iconify/vue'
 import axios from "axios";
 import ChapterQuizDialogMenu from "@/Components/ChapterQuizDialogMenu.vue";
 import {removeDuplicates} from "../../methods/removeDuplicates";
+import JuzQuizDialogMenu from "@/Components/JuzQuizDialogMenu.vue";
 
 
 // handling recent and bookmarks
@@ -144,14 +145,21 @@ const isToggle = () => {
 
 const isOpen = ref(false)
 const selectedChapter = ref(null)
-const openChapterDialogModal = (chapters) => {
+const openChapterDialogModal = (chapters: any) => {
     isOpen.value = !isOpen.value
     selectedChapter.value = chapters
-    console.log('is open is: ', isOpen.value)
+    console.log('is open chapter dialog is: ', isOpen.value)
 }
 
 // opening dialog of juz
+const isOpenJuz = ref(false)
+const selectedJuz = ref(null)
+const openJuzDialogModal = (juz: any) => {
+    isOpenJuz.value = !isOpenJuz.value
+    selectedJuz.value = juz
+    console.log(Number(selectedJuz.value.juz_number))
 
+}
 
 
 
@@ -249,16 +257,19 @@ const openChapterDialogModal = (chapters) => {
 
         <!--    grid the results of juz-->
 
-        <div>
+        <div class="grid grid-cols-4 gap-4">
             <div v-if="isJuz" v-for="(j, index) in newJuzResponse" :key="index">
 
-                <button class="bg-red-500" >
-                    Juz: {{j.juz_number}}
-                    Total Verses: {{j.totalAyahs}}
-                    <div class="bg-cyan-400 " v-for="c in Object.keys(j.chapters)">
+                <button @click="openJuzDialogModal(j)" class="bg-[#6B8F71] w-[385px] h-min rounded-[10px] space-y-2 p-4 " >
+                    <div class="flex justify-between">
+                        <span class="text-[16px] font-bold">Juz: {{j.juz_number}}</span>
+                        <span  class="text-[16px] font-bold">{{j.totalAyahs}} ayahs</span>
+                    </div>
+
+                    <div class="bg-[#D9FFF5] h-[100px] flex items-center p-4 rounded-[10px] " v-for="c in Object.keys(j.chapters)">
 
 
-                        <div v-if="matchChapterIdOfJuz(c)">
+                        <div class="flex flex-row gap-9"  v-if="matchChapterIdOfJuz(c)">
                             <div class="w-[50px] h-[50px] transform rotate-45 rounded-[10px] bg-[#1D1E18] flex justify-center items-center">
                                 <div class="transform -rotate-45">
                                    <span class="text-white font-bold ">{{c}}</span>
@@ -307,6 +318,14 @@ const openChapterDialogModal = (chapters) => {
 
 
     <!--    dialog for Juz-->
+
+    <JuzQuizDialogMenu v-if="isOpenJuz"
+                       :close="() => openJuzDialogModal(selectedJuz)"
+                       :juz-id="selectedJuz.juz_number"
+
+
+
+    />
 
 
 </template>

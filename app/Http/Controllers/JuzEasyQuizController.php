@@ -11,26 +11,17 @@ use Inertia\Inertia;
 
 class JuzEasyQuizController extends Controller
 {
-    public function __construct(FetchData $fetchData) {
 
-        $this->fetchData = $fetchData;
-    }
-
-    public function start(Request $request, $juz, $chapter, $verse)
+    public function start($juz, $chapter, $verse)
     {
-        $juzData = $this->fetchData->fetchJuz($chapter);
-        $verseData = $this->fetchData->fetchVerses();
-        $chapterData = $this->fetchData->fetchChapter();
 
-        if($request->input('juz_id') === $juzData['juzNumber']) {
 
-            return Inertia::render('JuzEasyQuiz', [
+        return Inertia::render('JuzEasyQuiz', [
                 'juz_id' => $juz,
                 'chapter_id' => $chapter,
-                'verse_id' => $verse,
-                'first_verse' => $verseData[0],
-                'first_chapter' => $chapterData]);
-        }
+                'verse_id' => $verse
+            ]);
+
     }
 
     public function next($juz, $chapter, $verse) {

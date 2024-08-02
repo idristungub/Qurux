@@ -187,8 +187,15 @@ const checkAnswer =  (answers: string[]) => {
             showIncorrect.value = false
             showCorrect.value = false
         }
+        if(verseId.value == verses.value.totalVerse) {
+            onFinish.value = true
+            showIncorrect.value = false
+            showCorrect.value = false
+        }
 
     }
+
+
 
 
 }
@@ -237,8 +244,11 @@ const handleNextVerse = () => {
         answers.value = []
         router.get(`/quiz/easy/${props.chapterId}/${verseId.value}`)
     } else if(healthPoints.value == 0) {
-            router.get('/quran-quest')
-            onFinish.value = true
+        router.get('/quran-quest')
+        onFinish.value = true
+    } else if(props.verseId === verses.value.totalVerse) {
+        router.get('/quran-quest')
+        onFinish.value = true
     }
 
 
@@ -270,7 +280,7 @@ const handleNextVerse = () => {
                 <img src="/assets/healthicon.png" class="lg:w-[40px] lg:h-[31px] w-[20px] ">
                 <div class="flex items-end gap-5">
                     <p> {{healthPoints}}</p>
-                    <p v-if="showIncorrect" class="lg:text-[30px] text-red-700" >-1</p>
+                    <p v-if="showIncorrect || onFinish" class="lg:text-[30px] text-red-700" >-1</p>
                 </div>
 
             </div>
@@ -362,7 +372,7 @@ const handleNextVerse = () => {
 <!--    check and skip buttons-->
 <!--    new div opens when either skip or check is pressed-->
 
-    <div v-if="onFinish" class="flex  bg-red-400 w-full h-[100px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="onFinish" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">

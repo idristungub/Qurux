@@ -66,9 +66,9 @@ class EasyQuizController extends Controller
                 User::where('health_status', 0)->update(['health_status' => 3]);
                 $user->save();
                 return to_route('quran-quest.home');
-
-
             }
+
+            return to_route('quran-quest.home');
         }
 
     }

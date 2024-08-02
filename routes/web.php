@@ -38,6 +38,9 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/quran-quest', function() {
+        $user = Auth::user();
+        $user->health_status = 3;
+        $user->save();
         return Inertia::render('QuranQuestHome');
     })->name('quran-quest.home');
 
@@ -48,7 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('bookmarks/delete/{chapter}/{verse}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 
     Route::get('recent', [RecentController::class, 'index'])->name('recent.index');
+
     Route::post('recent/easy/{chapter}/{chapterName}/{verse}', [RecentController::class, 'storeEasy'])->name('recent.storeEasy');
+    Route::post('recent/easy/juz/{juz}/{chapter}/{verse}', [RecentController::class, 'storeJuz'])->name('recent.storeJuz');
+
     Route::delete('recent/delete/{chapter}/{verse}', [RecentController::class, 'destroy'])->name('recent.destroy');
 
     //routes for checking and skipping and storing easyquiz
@@ -64,15 +70,16 @@ Route::middleware('auth')->group(function () {
     // routes for getting the next verse for a specific surah
     Route::get('/quiz/easy/{chapter}/{verse}', [EasyQuizController::class, 'start'])->name('easyQuiz.start');
 
-
-
-
-
-
-
-
     // routes for getting the next verse for a specific juz
     Route::get('/quiz/easy/juz/{juz}/{chapter}/{verse}', [JuzEasyQuizController::class, 'start'])->name('juzEasyQuiz.start');
+
+
+
+
+
+
+
+
     Route::get('/quiz/advance/{juz}/{chapter}', [JuzAdvanceQuizController::class, 'next'])->name('juzAdvanceQuiz.next');
 
     // bookmark a surah/juz

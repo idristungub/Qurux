@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class RecentController extends Controller
 {
     public function index() {
-        $recent = Quizstats::where('recent',true)->where('user_id', Auth::user()->id)->take(4)->get();
+        $recent = Quizstats::where('recent',true)->where('user_id', Auth::user()->id)->latest()->get();
         return response()->json($recent);
     }
 
@@ -27,6 +27,11 @@ class RecentController extends Controller
             'bookmarked' => false,
             'recent' => true
         ]);
+
+    }
+
+    public function storeJuz($juz, $chapter, $verse)
+    {
 
     }
 
