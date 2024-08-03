@@ -187,11 +187,14 @@ const checkAnswer =  (answers: string[]) => {
             showIncorrect.value = false
             showCorrect.value = false
         }
-        if(verseId.value == verses.value.totalVerse) {
+        if(verseId.value === verses.value.totalVerse) {
             onFinish.value = true
             showIncorrect.value = false
             showCorrect.value = false
+
+
         }
+
 
     }
 
@@ -245,11 +248,18 @@ const handleNextVerse = () => {
         router.get(`/quiz/easy/${props.chapterId}/${verseId.value}`)
     } else if(healthPoints.value == 0) {
         router.get('/quran-quest')
-        onFinish.value = true
-    } else if(props.verseId === verses.value.totalVerse) {
+        onFinish.value =false
+        showCorrect.value = false
+        showIncorrect.value = false
+    } else if(Number(verseId.value) === verses.value.totalVerse) {
         router.get('/quran-quest')
-        onFinish.value = true
+        onFinish.value =false
+        showCorrect.value = false
+        showIncorrect.value = false
+
     }
+
+
 
 
 }
@@ -280,7 +290,7 @@ const handleNextVerse = () => {
                 <img src="/assets/healthicon.png" class="lg:w-[40px] lg:h-[31px] w-[20px] ">
                 <div class="flex items-end gap-5">
                     <p> {{healthPoints}}</p>
-                    <p v-if="showIncorrect || onFinish" class="lg:text-[30px] text-red-700" >-1</p>
+                    <p v-if="showIncorrect" class="lg:text-[30px] text-red-700" >-1</p>
                 </div>
 
             </div>
@@ -372,12 +382,15 @@ const handleNextVerse = () => {
 <!--    check and skip buttons-->
 <!--    new div opens when either skip or check is pressed-->
 
-    <div v-if="onFinish" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+
+
+
+
+    <div v-if="onFinish" class="flex  bg-green-500 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
-            <Icon icon="raphael:cross" class="text-red-600 " />
-            <p>Hmmm... Better luck next time!</p>
+            <p>Well then up to the next one ayyyy!</p>
         </div>
         <div>
             <Link :href="route('quiz.resetHealth')" class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
@@ -399,7 +412,10 @@ const handleNextVerse = () => {
             <button @click.prevent="handleNextVerse" class=" lg:w-[243px] w-[120px] lg:h-[73px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
                 Continue
             </button>
+
+
         </div>
+
 
     </div>
 

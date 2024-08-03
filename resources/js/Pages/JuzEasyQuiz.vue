@@ -182,7 +182,7 @@ const checkAnswer =  (answers: string[]) => {
         // audio incorrect noise will play when showIncorrect is true
         healthPoints.value = Math.max(0, healthPoints.value - 1)
         axios.post('/checkHealth')
-            .then(response => console.log(response.data.health_status))
+            .then(response => console.log('health status: ',response.data.health_status))
             .catch(err => console.log(err.data.error))
         if(healthPoints.value <= 0) {
             onFinish.value = true
@@ -193,7 +193,15 @@ const checkAnswer =  (answers: string[]) => {
 
     }
 
+    if (Number(chapterId.value) === Number(lastChapterId.value) && Number(verseId.value) === Number(lastVerseId.value)) {
+        onCompletionJuz.value = true
+        onFinish.value = false
+        showCorrect.value = false
+        showIncorrect.value = false
+    }
+
 }
+
 
 
 
@@ -231,54 +239,82 @@ const toggleBookmarks = async () => {
 }
 
 // handle the continue button to increment verseId and show "Finish" when verseId reaches TotalAyah
-const handleNextVerse = () => {
-    if(verseId.value < verses.value.totalVerse) {
-        verseId.value++
-        showCorrect.value = false
-        showIncorrect.value = false
-        answers.value = []
-        router.get(`/quiz/easy/juz/${props.juzId}/${props.chapterId}/${verseId.value}`)
-    } else if(healthPoints.value == 0) {
-        router.get('/quran-quest')
-        onFinish.value = true
-    } else if(props.verseId === verses.value.totalVerse) {
-        chapterId.value++
-        showCorrect.value = false
-        showIncorrect.value = false
-        answers.value = []
-        router.get(`/quiz/easy/juz/${props.juzId}/${props.chapterId}/${verseId.value}`)
-    } else if(props.chapterId === lastChapterId.value && props.verseId === lastVerseId.value) {
-        onFinish.value = true
-    }
 
-
-}
-
-// getting the last verse and last chapter of that juz
 
 const lastVerseId = ref<number>(null)
 const lastChapterId = ref<number>(null)
 
-   const fetchLastChapterOrVerse = () => {
-       axios.get(`https://api.alquran.cloud/v1/juz/${props.juzId}/en.asad`, {
-           headers: {
-               'X-Requested-With': null
-           }
-       })
-           .then(response => {
-
-               const ayahData = response.data.data.ayahs
-               console.log(response.data.data.ayahs)
-               lastVerseId.value = ayahData[ayahData.length - 1].numberInSurah
-               lastChapterId.value = ayahData[ayahData.length - 1].surah.number
 
 
-               console.log('last verse of juz ', lastVerseId.value)
-               console.log('last chapter of juz ', lastChapterId.value)
-           })
-   }
+// getting the last verse and last chapter of that juz
 
-watch(lastVerseId, fetchLastChapterOrVerse)
+
+onMounted( () => {
+    axios.get(`https://api.alquran.cloud/v1/juz/${props.juzId}/en.asad`, {
+        headers: {
+            'X-Requested-With': null
+        }
+    })
+        .then(response => {
+
+            const ayahData = response.data.data.ayahs
+            console.log(response.data.data.ayahs)
+            lastVerseId.value = ayahData[ayahData.length - 1].numberInSurah
+            lastChapterId.value = ayahData[ayahData.length - 1].surah.number
+
+
+            console.log('last verse of juz ', lastVerseId.value)
+            console.log('last chapter of juz ', lastChapterId.value)
+        })
+})
+
+
+
+const onCompletionJuz = ref(false)
+
+const handleNextVerse = () => {
+    if (verseId.value < verses.value.totalVerse) {
+        verseId.value++
+        showCorrect.value = false
+        showIncorrect.value = false
+        onCompletionJuz.value = false
+        answers.value = []
+        router.get(`/quiz/easy/juz/${props.juzId}/${props.chapterId}/${verseId.value}`)
+    } else if (healthPoints.value == 0) {
+        router.get('/quran-quest')
+        onFinish.value = false
+        showIncorrect.value = false
+        showCorrect.value = false
+        onCompletionJuz.value = false
+    } else if (Number(verseId.value) === verses.value.totalVerse) {
+        const newChapterId = Number(chapterId.value) + 1
+        onFinish.value = false
+        showCorrect.value = false
+        showIncorrect.value = false
+        onCompletionJuz.value = false
+        console.log('chapterId: ', chapterId.value)
+
+        router.get(`/quiz/easy/juz/${props.juzId}/${newChapterId}/${1}`)
+
+
+        } else if (Number(chapterId.value) === Number(lastChapterId.value) && Number(verseId.value) === Number(lastVerseId.value)) {
+        onCompletionJuz.value = true
+        onFinish.value = false
+        showCorrect.value = false
+        showIncorrect.value = false
+        router.get('/quran-quest')
+    }
+
+}
+
+const handleEndJuz = () => {
+    onCompletionJuz.value = false
+    router.get('/quran-quest')
+}
+
+console.log('last verse', lastVerseId.value)
+console.log('last chapter', lastChapterId.value)
+
 
 </script>
 
@@ -305,7 +341,7 @@ watch(lastVerseId, fetchLastChapterOrVerse)
                 <img src="/assets/healthicon.png" class="lg:w-[40px] lg:h-[31px] w-[20px] ">
                 <div class="flex items-end gap-5">
                     <p> {{healthPoints}}</p>
-                    <p v-if="showIncorrect || onFinish" class="lg:text-[30px] text-red-700" >-1</p>
+                    <p v-if="showIncorrect || onCompletionJuz" class="lg:text-[30px] text-red-700" >-1</p>
                 </div>
 
             </div>
@@ -424,9 +460,19 @@ watch(lastVerseId, fetchLastChapterOrVerse)
             <button @click.prevent="handleNextVerse" class=" lg:w-[243px] w-[120px] lg:h-[73px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
                 Continue
             </button>
+
+
         </div>
 
+
+
+
     </div>
+
+
+
+
+
 
     <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
@@ -438,6 +484,23 @@ watch(lastVerseId, fetchLastChapterOrVerse)
         <div>
             <button @click.prevent="handleNextVerse" class=" lg:w-[243px] w-[120px] lg:h-[73px]  rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
                 Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div v-if="onCompletionJuz" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+
+        <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] items-center pl-10 ">
+
+            <p>Well Done! You have completed Juz: {{props.juzId}}</p>
+        </div>
+        <div>
+            <button @click.prevent="handleEndJuz" class=" lg:w-[243px] w-[120px] lg:h-[73px]  rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Finish
             </button>
 
         </div>

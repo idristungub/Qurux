@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_12_113807_create_quizstats_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/JuzQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/JuzQuizDialogMenu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +289,8 @@
       <workItem from="1722428412976" duration="24554000" />
       <workItem from="1722475062793" duration="1162000" />
       <workItem from="1722500563981" duration="32258000" />
-      <workItem from="1722597179386" duration="13053000" />
+      <workItem from="1722597179386" duration="19181000" />
+      <workItem from="1722638162831" duration="9016000" />
     </task>
     <servers />
   </component>
