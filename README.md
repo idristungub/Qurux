@@ -24,10 +24,10 @@
   <p>To run this project locally, follow these steps:</p>
   <ol>
     <li>Clone the repository:
-      <pre><code>git clone https://github.com/your-username/quran-quiz.git</code></pre>
+      <pre><code>git clone https://github.com/your-username/quran-quiz.git](https://github.com/idristungub/Qurux.git</code></pre>
     </li>
     <li>Navigate to the project directory:
-      <pre><code>cd quran-quiz</code></pre>
+      <pre><code>cd qurux</code></pre>
     </li>
     <li>Install frontend dependencies:
       <pre><code>cd frontend
@@ -55,15 +55,7 @@ composer install</code></pre>
   <h2>Usage</h2>
   <p>Once the application is running, you can access it by navigating to <code>http://localhost:3000</code> for the frontend and <code>http://localhost:8000</code> for the backend. Create an account or log in, select a quiz, and start testing your knowledge!</p>
 
-  <h2>Contributing</h2>
-  <p>Contributions are welcome! Please follow these steps:</p>
-  <ol>
-    <li>Fork the repository</li>
-    <li>Create a new branch: <code>git checkout -b feature/your-feature-name</code></li>
-    <li>Make your changes and commit them: <code>git commit -m 'Add some feature'</code></li>
-    <li>Push to the branch: <code>git push origin feature/your-feature-name</code></li>
-    <li>Open a pull request</li>
-  </ol>
+
 
   <h2>License</h2>
   <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
