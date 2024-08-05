@@ -1,15 +1,6 @@
-<p align="center" class="">QURUX</p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-<h1>Quran Quiz Project</h1>
+<h1>Qurux</h1>
   <p>
-    Welcome to the Quran Quiz project! This application offers a fun and interactive way to test your knowledge of the Quran. With quizzes of varying difficulty levels, users can challenge themselves with easy and advanced questions. The project includes achievements and leaderboards, encouraging friendly competition and aiding in memorization of the Quran.
+    Welcome to Qurux! This application offers a fun and interactive way to test your knowledge of the Quran. With quizzes of varying difficulty levels, users can challenge themselves with easy and advanced questions. The project includes achievements and leaderboards, encouraging friendly competition and aiding in memorization of the Quran.
   </p>
 
   <h2>Features</h2>
