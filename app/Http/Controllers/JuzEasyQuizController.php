@@ -26,15 +26,7 @@ class JuzEasyQuizController extends Controller
 
     }
 
-    public function next($juz, $chapter, $verse) {
 
-
-    }
-
-    public function skip($juz, $chapter, $verse) {
-
-
-    }
 
 
 

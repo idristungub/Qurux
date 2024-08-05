@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Validation/ValidationException.php" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\Program Files\php\php.exe">
     <include_path>
@@ -290,7 +295,13 @@
       <workItem from="1722475062793" duration="1162000" />
       <workItem from="1722500563981" duration="32258000" />
       <workItem from="1722597179386" duration="19181000" />
-      <workItem from="1722638162831" duration="9016000" />
+      <workItem from="1722638162831" duration="9158000" />
+      <workItem from="1722684387535" duration="9166000" />
+      <workItem from="1722703787310" duration="7821000" />
+      <workItem from="1722771078214" duration="3648000" />
+      <workItem from="1722853495849" duration="3146000" />
+      <workItem from="1722880522467" duration="393000" />
+      <workItem from="1722881666631" duration="6045000" />
     </task>
     <servers />
   </component>
