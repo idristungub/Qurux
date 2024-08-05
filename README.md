@@ -17,7 +17,7 @@
     <li>Frontend: Vue.js with Vite</li>
     <li>Backend: Laravel</li>
     <li>Database: MySQL</li>
-    <li>Authentication: Laravel Sanctum</li>
+    <li>User Authentication: Laravel Breeze</li>
   </ul>
 
   <h2>Installation</h2>
