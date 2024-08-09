@@ -3,6 +3,7 @@ import {Icon} from "@iconify/vue";
 import {onMounted, ref, watch} from "vue";
 import axios from "axios";
 import NavBar from "@/Layouts/NavBar.vue";
+import {Link, router} from "@inertiajs/vue3";
 
 const props = defineProps( {
     health_data: Number,
@@ -15,7 +16,7 @@ const points = ref<number|undefined>(props.points_data)
 // or fetch verses and audios from that chosen chapter
 const verses = ref<{}[]>([])
 const chapterResponse = ref<any>(null)
-
+const sortedVerseIds = ref<number[]>([])
 
 
 
@@ -49,13 +50,16 @@ const fetchVerses = () => {
                     misharyAudio: response.data.audio[1].url,
                     totalVerses: response.data.totalAyah,
 
-
                 });
+
+                sortedVerseIds.value = verses.value.map(verse => verse.verseId).sort((a, b) => a - b);
+                console.log("Sorted Verse IDs: ", sortedVerseIds.value);
+
             })
             .catch(err => console.log(err));
     }
 };
-console.log(verses.value)
+console.log("4 questions: ",verses.value)
 
 // Fetch the chapter data on mount
 onMounted(() => {
@@ -70,13 +74,7 @@ onMounted(() => {
         .catch(err => console.log(err));
 });
 
-// checkboxes values
-
 // audio play verse
-const audioplayed1 = ref(false)
-const audioplayed2 = ref(false)
-const audioplayed3 = ref(false)
-const audioplayed4 = ref(false)
 
 // Ref to track the currently playing index
 const currentPlayingIndex = ref(null);
@@ -84,7 +82,7 @@ const currentPlayingIndex = ref(null);
 const audioRefs = ref([]);
 
 // Method to play or pause the audio
-const playAudio = (index) => {
+const playAudio = (index:number) => {
     if (currentPlayingIndex.value !== null && currentPlayingIndex.value !== index) {
         // Pause the currently playing audio
         const currentAudioElement = audioRefs.value[currentPlayingIndex.value];
@@ -109,7 +107,7 @@ const playAudio = (index) => {
 };
 
 // Method to handle audio end event
-const audioEnded = (index) => {
+const audioEnded = (index:number) => {
     if (currentPlayingIndex.value === index) {
         currentPlayingIndex.value = null;
     }
@@ -119,6 +117,94 @@ const audioEnded = (index) => {
 onMounted(() => {
     audioRefs.value = new Array(verses.value.length).fill(null);
 });
+
+// toggle checkboxes
+
+const verseOrder = ref<Array<number|null>>(Array(4).fill(null));
+const currentOrder = ref(0);
+
+const toggleOrder = (index: number) => {
+    if (verseOrder.value[index] === null) {
+        if (currentOrder.value <= 4) {
+            verseOrder.value[index] = currentOrder.value++;
+
+        }
+        console.log(verseOrder.value)
+    } else {
+        const removedOrder = verseOrder.value[index];
+        verseOrder.value[index] = null
+        currentOrder.value--;
+
+
+        for (let i = 0; i < verseOrder.value.length; i++) {
+            if (verseOrder.value[i] && verseOrder.value[i]! > removedOrder) {
+                verseOrder.value[i]!--;
+            }
+        }
+    }
+};
+
+
+
+// check answers
+
+const showCorrect = ref(false)
+const showIncorrect = ref(false);
+const onFinish = ref(false)
+
+
+
+const checkAnswer = () => {
+    // Get the verseIds based on user input order
+    const userOrder = verseOrder.value.map(order => {
+        if (order !== null) {
+            return verses.value[order].verseId
+        }
+        return null;
+    }).filter(Boolean);
+
+
+    // Get the correct order of verseIds
+    const correctOrder = sortedVerseIds.value;
+
+
+    console.log("User's order: ", userOrder);
+    console.log("Correct order: ", correctOrder);
+
+    const userOrderMatches = userOrder.every((verseId, index) => {
+        return verseId === correctOrder[index];
+    });
+
+
+
+    if(userOrderMatches && userOrder.length === 4) {
+            showCorrect.value = true
+            showIncorrect.value = false
+            points.value += 5
+            axios.post('/checkPointsAdvance')
+        } else {
+            showIncorrect.value = true
+            showCorrect.value = false
+            // audio incorrect noise will play when showIncorrect is true
+            healthPoints.value = Math.max(0, healthPoints.value - 1)
+            axios.post('/checkHealth')
+                .then(response => console.log(response.data.health_status))
+                .catch(err => console.log(err.data.error))
+            if(healthPoints.value <= 0) {
+                onFinish.value = true
+                showIncorrect.value = false
+                showCorrect.value = false
+            }
+        }
+
+
+}
+
+
+const handleNextQuestion = () => {
+    window.location.reload()
+}
+
 </script>
 
 <template>
@@ -138,7 +224,7 @@ onMounted(() => {
 
             <div class="flex items-end gap-5">
                 <p>Points: {{points}}</p>
-                <p v-if="showCorrect" class="lg:text-[30px] text-[16px] text-green-600">+1</p>
+                <p v-if="showCorrect" class="lg:text-[30px] text-[16px] text-green-600">+5</p>
             </div>
 
             <p>Advance</p>
@@ -163,32 +249,94 @@ onMounted(() => {
 
 <!--    centre container-->
 
-    <div class="flex flex-col justify-center items-center bg-green-500 ">
-        <p>What is the order of theses verses in the surah</p>
-<!--        adding the start verse number-->
-        <div class="">
-            <label>Start Verse Number</label>
-            <input type="text">
-        </div>
+    <div class="flex flex-col justify-center items-center space-y-[30px] ">
+        <p class="lg:text-[25px] text-[14px]  font-bold">What is the order of theses verses in the surah?</p>
 
         <div>
-            <div v-for="(v,index) in verses" :key="index">
+            <div  v-for="(v,index) in verses" :key="index" class="flex items-center p-2 gap-3 bg-[#AAD2BA] rounded-md m-4">
+<!--                checkboxes-->
+                <div
+                    class="flex justify-center items-center w-[34px] h-[34px] bg-gray-300 rounded-[10px] cursor-pointer border-4 border-black"
+                    @click="toggleOrder(index)"
+                >
+                    <span v-if="verseOrder[index] !== null" class="text-center text-black">{{ verseOrder[index] }}</span>
+                </div>
+<!--main verse-->
+                    <p class=" flex flex-wrap w-full md:w-[677px] lg:text-[25px] font-bold">{{v.actual_verse}}</p>
 
-<!--                checkbox div-->
-                <div class="w-[34px] h-[36px] bg-red-500"></div>
-                <p>{{v.actual_verse}}</p>
-
-                <audio ref="audioRefs" :src="v.misharyAudio" @ended="audioEnded(index)"></audio>
-                <button class="flex justify-end" @click="playAudio(index)" >
-                    <img class="lg:w-[90px] w-[50px]" src="/assets/speaker.png">
-                </button>
+<!--                audio controls-->
+                <div class="flex items-center">
+                    <audio ref="audioRefs" :src="v.misharyAudio" @ended="audioEnded(index)"></audio>
+                    <button class="flex justify-end" @click="playAudio(index)" >
+                        <img class="lg:w-[75px] w-[50px]" src="/assets/speaker.png">
+                    </button>
+                </div>
 
             </div>
+        </div>
+    </div>
+
+<!--buttons baby-->
+
+    <div v-if="onFinish" class="flex  bg-green-500 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+
+        <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
+            <p>Well then up to the next one ayyyy!</p>
+        </div>
+        <div>
+            <Link :href="route('quiz.resetHealth')" class=" w-[243px] h-[73px] rounded-[10px] py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Finish
+            </Link>
+        </div>
+    </div>
+
+
+
+    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500 ">
+        <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
+            <Icon icon="raphael:cross" class="text-red-600" />
+            <p>Oh No! You got it wrong (watch your health!)</p>
+        </div>
+        <div>
+            <button @click.prevent="handleNextQuestion" class=" lg:w-[243px] w-[120px] lg:h-[73px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Continue
+            </button>
+
+
         </div>
 
 
     </div>
 
+    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+
+        <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
+        <div class="flex gap-3 lg:text-[40px] items-center pl-10 ">
+            <Icon class="text-green-600" icon="subway:tick" />
+            <p>Well Done! You got it correct</p>
+        </div>
+        <div>
+            <button @click.prevent="handleNextQuestion" class=" lg:w-[243px] w-[120px] lg:h-[73px]  rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div  v-if="!showCorrect && !showIncorrect && !onFinish" class="flex justify-between m-[80px] gap-5">
+        <button @click.prevent="checkAnswer"  class="bg-[#D9D9D9] lg:w-[243px] w-[99px] lg:h-[73px] h-[35px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#6B8F71] font-bold  ">
+            skip
+        </button>
+
+
+        <button @click.prevent="checkAnswer"   class="bg-[#6B8F71] lg:w-[243px] w-[99px] lg:h-[73px] h-[35px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#1D1E18] font-bold  ">
+            check
+        </button>
+    </div>
 
 
 

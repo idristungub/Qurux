@@ -29,6 +29,8 @@ const startQuiz = async () => {
              .catch(err => console.log(err))
          router.get(`/quiz/easy/${props.chapterId}/${1}`)
     } else if (difficulty.value == 'advance') {
+        await axios.post(`/recent/advance/${props.chapterId}/${props.arabicName}`)
+            .catch(err => console.log(err))
          router.get(`/quiz/advance/${props.chapterId}`)
     }
 }

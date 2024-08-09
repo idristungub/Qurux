@@ -5,6 +5,7 @@ import NavBar from "@/Layouts/NavBar.vue";
 import {shuffleArray} from "../../methods/shuffleArray";
 import {Icon} from "@iconify/vue";
 import {router, Link} from "@inertiajs/vue3";
+import {findDuplicates, getDuplicates} from "../../methods/findDuplicates";
 
 
 let props = defineProps( {
@@ -36,12 +37,13 @@ const fetchVerseData = async () => {
         .then(response => {
             const verseArabic = response.data.arabic1.trim().split(' ')
 
-            const verseArabicLong = verseArabic.reduce((acc: string[], value: string, index: number, array: string[]) => {
+
+            const verseArabicLong = verseArabic.reduce((acc: { word: string, index: number }[], value: string, index: number, array: string[]) => {
                 if (index % 2 === 0) {
                     if (index === array.length - 1) {
-                        acc.push(value);
+                        acc.push({ word: value, index });
                     } else {
-                        acc.push(value + ' ' + array[index + 1]);
+                        acc.push({ word: value + ' ' + array[index + 1], index });
                     }
                 }
                 return acc;
@@ -61,6 +63,10 @@ const fetchVerseData = async () => {
                 totalVerse: response.data.totalAyah
             }
 
+
+
+
+
         })
 
         .catch(err => console.log(err.message))
@@ -76,6 +82,7 @@ console.log(watch(verseId,fetchVerseData))
 
 
 
+
 // audio stuff
 const audioPlayed = ref(false)
 const playAudio = () => {
@@ -86,72 +93,60 @@ const playAudio = () => {
 
 const answers = ref<string[]>([])
 const isDragging = ref(false)
-const startDrag = (event: DragEvent, verseWord: string) => {
-    isDragging.value = true
+const startDrag = (event: DragEvent, verseObj: { word: string, index: number }) => {
+    isDragging.value = true;
 
-    if(event.dataTransfer) {
-        event.dataTransfer.dropEffect = 'move'
-        event.dataTransfer.effectAllowed = 'move'
-        event.dataTransfer.setData('text/plain', verseWord);
-        console.log(verseWord)
+    if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', JSON.stringify(verseObj));
+        console.log(verseObj);
     }
+};
 
-}
-
-const clickOnVerse = (event: MouseEvent, verseWord: string) => {
+const clickOnVerse = (event: MouseEvent, verseObj: { word: string, index: number }) => {
     isDragging.value = false;
 
+    answers.value.push(verseObj);
+    verses.value.actual_verse = verses.value.actual_verse.filter(item => item.index !== verseObj.index);
 
-        answers.value.push(verseWord)
-        verses.value.actual_verse = verses.value.actual_verse.filter(word => word !== verseWord);
-
-        console.log('answers are', answers.value)
-
-
+    console.log('answers are', answers.value);
+};
 
 
+const drop = (event: DragEvent) => {
+    isDragging.value = false;
 
-}
+    if (event.dataTransfer) {
+        const droppedData = JSON.parse(event.dataTransfer.getData('text/plain'));
+        answers.value.push(droppedData);
+        verses.value.actual_verse = verses.value.actual_verse.filter(item => item.index !== droppedData.index);
 
-
-const drop = (event: DragEvent, index: number) => {
-    isDragging.value = false
-
-    if(event.dataTransfer) {
-
-        const droppedWord = event.dataTransfer.getData('text/plain');
-
-        answers.value.push(droppedWord)
-        verses.value.actual_verse = verses.value.actual_verse.filter(word => word !== droppedWord);
-
-        console.log('answers are', answers.value)
-
-
+        console.log('answers are', answers.value);
     }
-}
+};
 
 const reset = ref(false)
- const onDeleteWord = (words: string) => {
-    if(showCorrect.value == true || showIncorrect.value == true) {
-        return
+const onDeleteWord = (verseObj: { word: string, index: number }) => {
+    if (showCorrect.value || showIncorrect.value) {
+        return;
     }
-    answers.value.splice(answers.value.indexOf(words), 1)
-     verses.value.actual_verse.push(words)
-     console.log('list of words are', verses.value.actual_verse)
-}
+    answers.value = answers.value.filter(item => item.index !== verseObj.index);
+    verses.value.actual_verse.push(verseObj);
+    console.log('list of words are', verses.value.actual_verse);
+};
 // on delete all verses from
 const onDeleteAll = () => {
-    reset.value = true
-    if(reset.value == true) {
-        for(let i = 0; i < answers.value.length; i++) {
-            verses.value.actual_verse.push(answers.value[i])
-
-        }
-        answers.value.splice(0, answers.value.length)
-
-
+    reset.value = true;
+    if (reset.value) {
+        answers.value.forEach(verseObj => {
+            verses.value.actual_verse.push(verseObj);
+        });
+        answers.value = [];
     }
-}
+};
+
+
 
 // checking the answer of words in the div to match the actual_verse
 const showCorrect = ref(false)
@@ -159,17 +154,17 @@ const showIncorrect = ref(false)
 const onFinish = ref(false)
 
 const checkAnswer =  (answers: string[]) => {
-    const answerFirstIndex = ' ' + answers.join(' ')
-    const answerOtherIndexes = answers.join(' ')
-    console.log("users guess for first index: ", answerFirstIndex)
-    console.log("users guess for the rest: ", answerOtherIndexes)
+    const answersWordsNotJoined = answers.map(verseWord => {
+       return verseWord.word
+    })
+    console.log("users guess: ", answersWordsNotJoined.join(' '))
     console.log("the answer joined is: ", verses.value.answer)
-    if(answerFirstIndex === verses.value.answer || answerOtherIndexes == verses.value.answer) {
+    if(answersWordsNotJoined.join(' ') === verses.value.answer) {
         showCorrect.value = true
         showIncorrect.value = false
         // audio correct noise will play when showCorrect is true
         points.value++
-        axios.post('/checkPoints')
+        axios.post('/checkPointsEasy')
 
 
 
@@ -345,7 +340,7 @@ const handleNextVerse = () => {
                          class="bg-[#AAD2BA] w-fit flex flex-grow justify-center items-center break-words rounded-[10px] m-5 p-4 cursor-grab"
                          @dragstart="startDrag($event, v)"
                          @click="onDeleteWord(v)">
-                        <p class="lg:text-[40px] text-[20px] ">{{v}}</p>
+                        <p class="lg:text-[40px] text-[20px] ">{{v.word}}</p>
                     </div>
                 </div>
 
@@ -370,7 +365,7 @@ const handleNextVerse = () => {
                      class="bg-[#AAD2BA] w-fit flex  justify-center items-center break-words rounded-[10px] m-2 p-4 cursor-grab "
                      @dragstart="startDrag($event, v)" @click="clickOnVerse($event, v)">
 
-                    <p class="lg:text-[40px] text-[20px]">{{v}}</p>
+                    <p class="lg:text-[40px] text-[20px]">{{v.word}}</p>
                 </div>
             </div>
 

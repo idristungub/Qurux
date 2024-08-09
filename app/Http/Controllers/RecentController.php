@@ -30,6 +30,21 @@ class RecentController extends Controller
 
     }
 
+    public  function storeChapterAdvance($chapter, $chapterName)
+    {
+        $user = Auth::user();
+
+        Quizstats::updateOrCreate([
+            'user_id' => $user->id,
+            'chapter_title' =>  $chapterName,
+            'chapter_number' => $chapter,
+            'difficulty' => 'advance',
+            'bookmarked' => false,
+            'recent' => true
+        ]);
+
+    }
+
     public function storeJuzEasy($juz, $chapter, $verse)
     {
 

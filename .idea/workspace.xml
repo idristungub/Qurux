@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/methods/findDuplicates.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdvanceQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzEasyQuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/methods/removeDuplicates.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -301,7 +308,12 @@
       <workItem from="1722771078214" duration="3648000" />
       <workItem from="1722853495849" duration="3146000" />
       <workItem from="1722880522467" duration="393000" />
-      <workItem from="1722881666631" duration="6045000" />
+      <workItem from="1722881666631" duration="8519000" />
+      <workItem from="1722950816698" duration="12803000" />
+      <workItem from="1723035907224" duration="6923000" />
+      <workItem from="1723071203462" duration="12588000" />
+      <workItem from="1723121342730" duration="19087000" />
+      <workItem from="1723219666133" duration="11034000" />
     </task>
     <servers />
   </component>

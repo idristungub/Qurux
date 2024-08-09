@@ -24,7 +24,13 @@ class AdvanceQuizController extends Controller
     }
 
 
-
+    public function checkPointsAdvance() {
+        if(Auth::check()){
+            $user = Auth::user();
+            $user->points += 5;
+            $user->save();
+        }
+    }
 
 
 

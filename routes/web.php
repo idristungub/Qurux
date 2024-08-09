@@ -57,16 +57,23 @@ Route::middleware('auth')->group(function () {
 
     Route::get('recent', [RecentController::class, 'index'])->name('recent.index');
 
+    // route for recent easy and advance
     Route::post('recent/easy/{chapter}/{chapterName}/{verse}', [RecentController::class, 'storeChapterEasy'])->name('recent.storeChapterEasy');
     Route::post('recent/easy/juz/{juz}/{chapter}/{verse}', [RecentController::class, 'storeJuzEasy'])->name('recent.storeJuzEasy');
+    Route::post('recent/advance/{chapter}/{chapterName}', [RecentController::class, 'storeChapterAdvance'])->name('recent.storeChapterAdvance');
 
     Route::delete('recent/delete/{chapter}/{verse}', [RecentController::class, 'destroy'])->name('recent.destroy');
 
+
+
     //routes for checking and skipping and storing easyquiz
-    Route::post('/checkPoints', [EasyQuizController::class, 'checkPoints'])->name('quiz.checkPoints');
+    Route::post('/checkPointsEasy', [EasyQuizController::class, 'checkPoints'])->name('quiz.checkPoints');
     Route::post('/checkHealth', [EasyQuizController::class, 'checkHealth'])->name('quiz.checkHealth');
     Route::get('/resetHealth', [EasyQuizController::class, 'resetHealth'])->name('quiz.resetHealth');
 
+
+    // routes for checking for points and health in advance
+    Route::post('/checkPointsAdvance', [AdvanceQuizController::class, 'checkPointsAdvance'])->name('quiz.checkPointsAdvance');
 
 
     Route::get('/achievements', [AchievementController::class, 'create'])->name('achievements.create');
