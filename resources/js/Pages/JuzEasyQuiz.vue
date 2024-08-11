@@ -149,12 +149,12 @@ const showIncorrect = ref(false)
 const onFinish = ref(false)
 
 const checkAnswer =  (answers: string[]) => {
-    const answerFirstIndex = ' ' + answers.join(' ')
-    const answerOtherIndexes = answers.join(' ')
-    console.log("users guess for first index: ", answerFirstIndex)
-    console.log("users guess for the rest: ", answerOtherIndexes)
+    const answersWordsJoined = answers.map(verseWord => {
+        return verseWord.word
+    })
+    console.log("users guess: ", answersWordsJoined.join(' '))
     console.log("the answer joined is: ", verses.value.answer)
-    if(answerFirstIndex === verses.value.answer || answerOtherIndexes == verses.value.answer) {
+    if(answersWordsJoined.join(' ') || ' ' + answersWordsJoined(' ') === verses.value.answer) {
         showCorrect.value = true
         showIncorrect.value = false
         // audio correct noise will play when showCorrect is true
@@ -311,18 +311,18 @@ console.log('last chapter', lastChapterId.value)
     <NavBar/>
 
     <!--    alert messages-->
-    <div v-if="showAlert1" class="p-4 mb-4 text-sm rounded-lg  bg-[#B9F5D8] text-[#1D1E18] absolute top-[8%]  lg:right-[47%] right-[20%] duration-500" role="alert">
+    <div v-if="showAlert1" class="p-4 mb-4 text-sm rounded-lg  bg-[#B9F5D8] text-[#1D1E18] fixed top-[18%] lg:right-[60%] right-[20%] duration-500" role="alert">
         <span class="font-medium">Success alert! {{ bookmarkAlert }}</span>
     </div>
 
-    <div v-if="showAlert2" class="p-4 mb-4 text-sm rounded-lg  bg-red-400 text-[#1D1E18] absolute top-[8%] lg:right-[47%] right-[20%] duration-500" role="alert">
+    <div v-if="showAlert2" class="p-4 mb-4 text-sm rounded-lg  bg-red-400 text-[#1D1E18] fixed top-[18%] lg:right-[60%] right-[20%] duration-500" role="alert">
         <span class="font-medium">Delete alert! {{ deleteBookmarkAlert }}</span>
     </div>
 
 
     <!--   main top body -->
 
-    <div class="flex justify-between m-2">
+    <div class="flex justify-between lg:mt-[102px] mr-2 ml-2 mt-20">
 
         <div class="font-bold lg:text-[25px]  " >
             <div class="flex gap-4 items-center">

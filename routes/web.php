@@ -76,7 +76,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkPointsAdvance', [AdvanceQuizController::class, 'checkPointsAdvance'])->name('quiz.checkPointsAdvance');
 
 
+    // routes for achievements
     Route::get('/achievements', [AchievementController::class, 'create'])->name('achievements.create');
+    Route::get('/bookmarkAchievement', [AchievementController::class, 'getBookmarks'])->name('achievements.getBookmarks');
+    Route::get('/top3Achievement', [AchievementController::class, 'getTop3'])->name('achievements.getTop3');
 
 
     // routes for getting the next verse for a specific surah

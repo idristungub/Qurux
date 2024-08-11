@@ -9,6 +9,9 @@ class AchievedUser extends Model
 {
     use HasFactory;
 
+
+
+
     protected $guarded = [];
 
     public function user()

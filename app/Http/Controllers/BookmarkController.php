@@ -77,13 +77,12 @@ class BookmarkController extends Controller
             'recent' => false
         ]);
 
+
+
         return response()->json(['message' => "You have bookmarked Juz $juz, Surah $chapter and verse $verse" ]);
     }
 
 
-    public function storeAdvance($chapter, $chapterName, $verse) {
-
-    }
 
 
     /**

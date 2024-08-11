@@ -13,13 +13,6 @@ class AchievementSeeder extends Seeder
      */
     public function run(): void
     {
-        Achievement::create([
-            'achievement_title' => 'Completed 3 Surahs with 3 lives',
-        ]);
-
-        Achievement::create([
-            'achievement_title' => 'Completed 5 Surahs without listening to it',
-        ]);
 
         Achievement::create([
             'achievement_title' => 'Reach top 3 in the leaderboard',

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('achievement_user', function (Blueprint $table) {
+        Schema::create('achieved_users', function (Blueprint $table) {
             $table->id();
             $table->boolean('completed')->default(false);
             $table->foreignId('users_id')->constrained('users')->cascadeOnDelete();

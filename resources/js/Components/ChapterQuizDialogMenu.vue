@@ -39,7 +39,7 @@ const startQuiz = async () => {
 
 
 <template>
-    <div class=" flex fixed top-0 left-0 right-0 bottom-0 z-99 backdrop-blur-sm items-center justify-center">
+    <div class=" flex fixed z-50 top-0 left-0 right-0 bottom-0 backdrop-blur-sm items-center justify-center">
         <div  class="w-[514px] h-[380px] bg-[#6B8F71] pt-5 px-8 space-y-5 ">
             <div class="flex justify-between items-center ">
                 <button @click="infoBox" class="underline text-white" >Info</button>

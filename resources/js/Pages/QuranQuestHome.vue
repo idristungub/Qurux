@@ -186,7 +186,7 @@ const routeToBookmarkJuzOrChapter = (bookmark:string[]) => {
 
 <!--    recent and bookmarked-->
 
-        <div class="flex gap-8 text-[#D2B721] font-bold pt-[20px] pl-5">
+        <div class="flex gap-8 text-[#D2B721] font-bold pt-[20px] pl-5 lg:mt-[100px] mt-[50px]">
             <button @click="handleRecent" :class="{'text-black': isRecent}">Recent Quizzes</button>
             <button @click="handleBookmark" :class="{'text-black': isBookmark}">Bookmarks</button>
         </div>
@@ -230,23 +230,23 @@ const routeToBookmarkJuzOrChapter = (bookmark:string[]) => {
 
 <!--    selection container of quizzes-->
 
-    <div class="pl-5">
+    <div class="lg:pl-5 pl-3 ">
         <div class="flex gap-2 float-right">
             <span class="font-bold text-[16px]">SORT BY: {{orderName}} </span>
-            <button :class="{'rotate-180': toggleArrow}" @click="isToggle">
+            <button class="relative z-10" :class="{'rotate-180': toggleArrow}" @click="isToggle">
                 <Icon icon="ri:arrow-up-s-line" class="text-[25px]" />
             </button>
 
         </div>
 
 <!--grid the results of chapters-->
-        <div class="grid grid-cols-4 gap-4 m-5">
+        <div class="grid lg:grid-cols-4 gap-4 m-5 grid-cols-1 lg:pt-1 pt-10">
             <div  v-if="isChapters" v-for="chapters in chapterResponse">
                 <!--container-->
-                <button  @click="openChapterDialogModal(chapters)" class="flex bg-[#D9FFF5] w-[385px] h-[82px] justify-between p-4 rounded-[10px] ">
+                <button  @click="openChapterDialogModal(chapters)" class="flex bg-[#D9FFF5] lg:w-[385px] w-[319px] h-[82px] justify-between p-4 rounded-[10px] ">
                     <!--                inner container-->
-                    <div class="w-[50px] h-[50px] transform rotate-45 rounded-[10px] bg-[#1D1E18] flex justify-center items-center">
-                        <div class="transform -rotate-45">
+                    <div class="w-[50px] h-[50px] z-60 transform rotate-45 relative z-10 rounded-[10px] bg-[#1D1E18] flex justify-center items-center">
+                        <div class="transform  -rotate-45">
                             <span class="text-white font-bold ">{{chapters.id}}</span>
                         </div>
 
@@ -272,10 +272,10 @@ const routeToBookmarkJuzOrChapter = (bookmark:string[]) => {
 
         <!--    grid the results of juz-->
 
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid lg:grid-cols-4 gap-4 m-5 grid-cols-1 lg:pt-1 ">
             <div v-if="isJuz" v-for="(j, index) in newJuzResponse" :key="index">
 
-                <button @click="openJuzDialogModal(j)" class="bg-[#6B8F71] w-[385px] h-min rounded-[10px] space-y-2 p-4 " >
+                <button @click="openJuzDialogModal(j)" class="bg-[#6B8F71] lg:w-[385px] w-[319px] h-min rounded-[10px] space-y-2 p-4 " >
                     <div class="flex justify-between">
                         <span class="text-[16px] font-bold">Juz: {{j.juz_number}}</span>
                         <span  class="text-[16px] font-bold">{{j.totalAyahs}} ayahs</span>

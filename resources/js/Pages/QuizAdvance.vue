@@ -4,6 +4,8 @@ import {onMounted, ref, watch} from "vue";
 import axios from "axios";
 import NavBar from "@/Layouts/NavBar.vue";
 import {Link, router} from "@inertiajs/vue3";
+import {shuffleArray} from "../../methods/shuffleArray";
+import {arrayMatch} from "../../methods/arrayMatch";
 
 const props = defineProps( {
     health_data: Number,
@@ -17,7 +19,7 @@ const points = ref<number|undefined>(props.points_data)
 const verses = ref<{}[]>([])
 const chapterResponse = ref<any>(null)
 const sortedVerseIds = ref<number[]>([])
-
+const iterator = ref(null)
 
 
 
@@ -34,6 +36,8 @@ const fetchVerses = () => {
     const totalVerses = chapterResponse.value.verses_count;
     const startingPoint = getRandomNumber(1, totalVerses - 4); // Random start point ensuring at least 4 verses can be fetched
 
+    let fetchedVerses = [];
+
     for (let i = startingPoint; i < startingPoint + 4 && i <= totalVerses; i++) {
         axios.get(`https://quranapi.pages.dev/api/${props.chapterId}/${i}.json`, {
             headers: {
@@ -41,7 +45,7 @@ const fetchVerses = () => {
             }
         })
             .then(response => {
-                verses.value.push({
+                fetchedVerses.push({
                     chapterId: Number(props.chapterId),
                     verseId: i,
                     arabicName: response.data.surahName,
@@ -49,17 +53,30 @@ const fetchVerses = () => {
                     actual_verse: response.data.arabic1,
                     misharyAudio: response.data.audio[1].url,
                     totalVerses: response.data.totalAyah,
-
                 });
 
-                sortedVerseIds.value = verses.value.map(verse => verse.verseId).sort((a, b) => a - b);
-                console.log("Sorted Verse IDs: ", sortedVerseIds.value);
+                // Check if all 4 verses have been fetched
+                if (fetchedVerses.length === 4) {
 
+                    fetchedVerses.sort((a, b) => a.verseId - b.verseId);
+
+                    fetchedVerses.forEach((verse, index) => {
+                        verse.id = index;
+                    });
+                    const shuffledVerses = shuffleArray([...fetchedVerses]);
+
+                    verses.value = shuffledVerses;
+
+                    sortedVerseIds.value = fetchedVerses.map(verse => verse.verseId);
+
+                    console.log("Shuffled Verse IDs for display: ", verses.value);
+                    console.log("Sorted Verse IDs: ", sortedVerseIds.value);
+                }
             })
             .catch(err => console.log(err));
     }
 };
-console.log("4 questions: ",verses.value)
+
 
 // Fetch the chapter data on mount
 onMounted(() => {
@@ -123,13 +140,17 @@ onMounted(() => {
 const verseOrder = ref<Array<number|null>>(Array(4).fill(null));
 const currentOrder = ref(0);
 
+
 const toggleOrder = (index: number) => {
     if (verseOrder.value[index] === null) {
-        if (currentOrder.value <= 4) {
+        if (currentOrder.value < 4) {
             verseOrder.value[index] = currentOrder.value++;
 
+
+
+
         }
-        console.log(verseOrder.value)
+        console.log("for each click the verseOrder: ", verseOrder.value)
     } else {
         const removedOrder = verseOrder.value[index];
         verseOrder.value[index] = null
@@ -155,29 +176,27 @@ const onFinish = ref(false)
 
 
 const checkAnswer = () => {
-    // Get the verseIds based on user input order
     const userOrder = verseOrder.value.map(order => {
         if (order !== null) {
-            return verses.value[order].verseId
+            return verses.value[order].verseId;
         }
         return null;
-    }).filter(Boolean);
+    }).filter(Boolean); // Filter out null values
 
 
-    // Get the correct order of verseIds
-    const correctOrder = sortedVerseIds.value;
+    // order that is correct
+    const verseIdArray = verses.value.map(verse => {
+        return verse.id
+    })
+
+    console.log("User's order (verseOrder): ", verseOrder.value);
+    console.log("Correct order: ", verseIdArray);
 
 
-    console.log("User's order: ", userOrder);
-    console.log("Correct order: ", correctOrder);
-
-    const userOrderMatches = userOrder.every((verseId, index) => {
-        return verseId === correctOrder[index];
-    });
-
-
-
-    if(userOrderMatches && userOrder.length === 4) {
+    if(verseOrder.value[0] === verses.value[0].id
+        && verseOrder.value[1] === verses.value[1].id
+        && verseOrder.value[2] === verses.value[2].id
+        && verseOrder.value[3] === verses.value[3].id) {
             showCorrect.value = true
             showIncorrect.value = false
             points.value += 5
@@ -210,7 +229,7 @@ const handleNextQuestion = () => {
 <template>
     <NavBar/>
 
-    <div class="flex justify-between m-4">
+    <div class="flex justify-between lg:mt-[102px] mr-2 ml-2 mt-20">
 
         <div class="font-bold lg:text-[25px]  " >
             <div class="flex gap-4 items-center">
@@ -242,6 +261,9 @@ const handleNextQuestion = () => {
         </div>
 
         <div class="lg:w-[530px] w-20">
+            <div>
+
+            </div>
 
         </div>
 
@@ -259,7 +281,7 @@ const handleNextQuestion = () => {
                     class="flex justify-center items-center w-[34px] h-[34px] bg-gray-300 rounded-[10px] cursor-pointer border-4 border-black"
                     @click="toggleOrder(index)"
                 >
-                    <span v-if="verseOrder[index] !== null" class="text-center text-black">{{ verseOrder[index] }}</span>
+                    <span v-if="verseOrder[index] !== null" class="text-center text-black">{{ verseOrder[index]! + 1}}</span>
                 </div>
 <!--main verse-->
                     <p class=" flex flex-wrap w-full md:w-[677px] lg:text-[25px] font-bold">{{v.actual_verse}}</p>
