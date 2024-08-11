@@ -25,7 +25,7 @@
   <p>To run this project locally, follow these steps:</p>
   <ol>
     <li>Clone the repository:
-      <pre><code>git clone https://github.com/your-username/quran-quiz.git](https://github.com/idristungub/Qurux.git</code></pre>
+      <pre><code>git clone https://github.com/idristungub/Qurux.git</code></pre>
     </li>
     <li>Navigate to the project directory:
       <pre><code>cd qurux</code></pre>
