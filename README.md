@@ -100,4 +100,4 @@ composer install</code></pre>
   <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
 
   <h2>Contact</h2>
-  <p>If you have any questions or suggestions, feel free to reach out to the project maintainer at <a href="mailto:idristungub@gmail.com">idristungub@gmail.com</a>.</p>
+  <p>If you have any questions or suggestions or even any errors that come by, feel free to reach out to the project maintainer at <a href="mailto:idristungub@gmail.com">idristungub@gmail.com</a>.</p>
