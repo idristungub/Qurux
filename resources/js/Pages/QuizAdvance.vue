@@ -284,7 +284,7 @@ const handleNextQuestion = () => {
                     <span v-if="verseOrder[index] !== null" class="text-center text-black">{{ verseOrder[index]! + 1}}</span>
                 </div>
 <!--main verse-->
-                    <p class=" flex flex-wrap w-full md:w-[677px] lg:text-[25px] font-bold">{{v.actual_verse}}</p>
+                    <p dir="rtl" class=" flex flex-wrap w-full md:w-[677px] lg:text-[25px] font-bold">{{v.actual_verse}}</p>
 
 <!--                audio controls-->
                 <div class="flex items-center">
@@ -300,7 +300,7 @@ const handleNextQuestion = () => {
 
 <!--buttons baby-->
 
-    <div v-if="onFinish" class="flex  bg-green-500 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="onFinish" class="flex  bg-green-500 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500 lg:mt-[137px]">
 
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
@@ -315,7 +315,7 @@ const handleNextQuestion = () => {
 
 
 
-    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500 ">
+    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500 lg:mt-[130px] ">
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
             <Icon icon="raphael:cross" class="text-red-600" />
@@ -332,7 +332,7 @@ const handleNextQuestion = () => {
 
     </div>
 
-    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[119px] h-[130px] justify-between items-center pr-[50px] duration-500 lg:mt-[130px]">
 
         <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] items-center pl-10 ">
@@ -349,7 +349,7 @@ const handleNextQuestion = () => {
     </div>
 
 
-    <div  v-if="!showCorrect && !showIncorrect && !onFinish" class="flex justify-between m-[80px] gap-5">
+    <div  v-if="!showCorrect && !showIncorrect && !onFinish" class="flex justify-between gap-5 lg:mt-[130px] m-7 lg:mr-[50px] lg:ml-[50px]">
         <button @click.prevent="checkAnswer"  class="bg-[#D9D9D9] lg:w-[243px] w-[99px] lg:h-[73px] h-[35px] rounded-[10px] lg:py-2 px-5 border-4 border-[#AAD2BA] lg:text-[25px] text-[#6B8F71] font-bold  ">
             skip
         </button>

@@ -152,9 +152,12 @@ const checkAnswer =  (answers: string[]) => {
     const answersWordsJoined = answers.map(verseWord => {
         return verseWord.word
     })
+
+    const answersWordsJoined2 = ' ' + answersWordsJoined.join(' ')
+
     console.log("users guess: ", answersWordsJoined.join(' '))
     console.log("the answer joined is: ", verses.value.answer)
-    if(answersWordsJoined.join(' ') || ' ' + answersWordsJoined(' ') === verses.value.answer) {
+    if(answersWordsJoined.join(' ') === verses.value.answer || answersWordsJoined2 === verses.value.answer) {
         showCorrect.value = true
         showIncorrect.value = false
         // audio correct noise will play when showCorrect is true
@@ -421,7 +424,7 @@ console.log('last chapter', lastChapterId.value)
     <!--    check and skip buttons-->
     <!--    new div opens when either skip or check is pressed-->
 
-    <div v-if="onFinish" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="onFinish" class="flex  bg-green-500 w-full lg:h-[119px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
@@ -438,7 +441,7 @@ console.log('last chapter', lastChapterId.value)
     </div>
 
 
-    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[119px] h-[130px] justify-between items-center pr-[50px] duration-500">
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
             <Icon icon="raphael:cross" class="text-red-600" />
@@ -462,7 +465,7 @@ console.log('last chapter', lastChapterId.value)
 
 
 
-    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500">
+    <div v-if="showCorrect" class="flex  bg-[#D9FFF5] w-full lg:h-[119px] h-[130px] justify-between items-center pr-[50px] duration-500">
 
         <audio  autoplay src="/assets/correct%20answer%20sound%20(qurux).mp3"></audio>
         <div class="flex gap-3 lg:text-[40px] items-center pl-10 ">

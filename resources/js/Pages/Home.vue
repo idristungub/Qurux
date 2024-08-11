@@ -9,10 +9,13 @@ import NavBar from "@/Layouts/NavBar.vue";
 
 <template>
     <NavBar />
-    <img src="/assets/leaf.png" alt="leaf">
+    <div class="lg:mt-[100px] float-right">
+        <img class="lg:w-[200px]" src="/assets/leaf.png" alt="leaf">
+    </div>
+
 
     <div class="flex justify-center my-[100px] mx-9 flex-col">
-        <p class="lg:text-[50px] text-[16px] lg:w-[677px] w-[251px] font-bold">Converse and Convene to gain knowledge of this <span class="text-[#D2B721] font-bold underline">faith</span> </p>
+        <p class="lg:text-[50px] text-[16px] lg:w-[677px] w-[251px] mt-[100px] font-bold">Converse and Convene to gain knowledge of this <span class="text-[#D2B721] font-bold underline">faith</span> </p>
 
         <p class="lg:my-6 my-4 lg:w-[650px] lg:text-[16px] w-[150px] text-[11px]">Learn and improve your understanding of islam</p>
         <Link class="bg-[#AAD2BA] lg:w-[200px] w-[120px] lg:h-[50px] h-[32px]  rounded-[10px] lg:py-3 py-1.5 lg:px-10 px-5 text-white font-bold lg:text-[20px] text-[14px]" :href="route('register')">
@@ -20,7 +23,10 @@ import NavBar from "@/Layouts/NavBar.vue";
         </Link>
     </div>
 
-    <img src="" alt="leaf">
+    <div>
+        <img class="w-[200px]" src="/assets/leaf-removebg-preview%202.png" alt="leaf">
+    </div>
+
 
 <!--    gap line-->
     <div class="flex justify-center items-center">

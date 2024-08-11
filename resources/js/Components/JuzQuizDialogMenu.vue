@@ -85,19 +85,29 @@ const startQuiz = async () => {
 
             </div>
 
-            <div class="flex justify-between">
-                <div class="flex gap-3 items-center text-white font-bold">
-                    <input class="bg-grey border-black border-2" type="radio" id="easy" value="easy" v-model="difficulty"/>
-                    <label for="easy">Easy</label>
+            <div>
+                <div class="flex justify-between">
+                    <div class="flex gap-3 items-center text-white font-bold">
+                        <input class="bg-grey border-black border-2" type="radio" id="easy" value="easy" v-model="difficulty"/>
+                        <label for="easy">Easy</label>
+                    </div>
+
+
+                    <div class="flex gap-3 items-center text-white font-bold">
+                        <input class="bg-grey border-black border-2" type="radio" id="advance" value="advance" v-model="difficulty"/>
+                        <label for="advance">Advance</label>
+
+                    </div>
                 </div>
 
 
-                <div class="flex gap-3 items-center text-white font-bold">
-                    <input class="bg-grey border-black border-2" type="radio" id="advance" value="advance" v-model="difficulty"/>
-                    <label for="advance">Advance</label>
+                <div v-if="difficulty === 'advance'">
+                    <p class="text-red-600">Advance difficulty is currently under maintenance </p>
                 </div>
-
             </div>
+
+
+
 
             <!--test to know what difficulty it is-->
             <div class="font-bold">Chosen difficulty: {{difficulty}} </div>

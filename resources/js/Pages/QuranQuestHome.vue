@@ -243,26 +243,22 @@ const routeToBookmarkJuzOrChapter = (bookmark:string[]) => {
         <div class="grid lg:grid-cols-4 gap-4 m-5 grid-cols-1 lg:pt-1 pt-10">
             <div  v-if="isChapters" v-for="chapters in chapterResponse">
                 <!--container-->
-                <button  @click="openChapterDialogModal(chapters)" class="flex bg-[#D9FFF5] lg:w-[385px] w-[319px] h-[82px] justify-between p-4 rounded-[10px] ">
-                    <!--                inner container-->
+                <button @click="openChapterDialogModal(chapters)" class="flex bg-[#D9FFF5] lg:w-[385px] w-[319px] h-[82px] justify-between p-4 rounded-[10px] overflow-hidden">
+                    <!-- Inner container -->
                     <div class="w-[50px] h-[50px] z-60 transform rotate-45 relative z-10 rounded-[10px] bg-[#1D1E18] flex justify-center items-center">
-                        <div class="transform  -rotate-45">
-                            <span class="text-white font-bold ">{{chapters.id}}</span>
+                        <div class="transform -rotate-45">
+                            <span class="text-white font-bold">{{chapters.id}}</span>
                         </div>
-
                     </div>
 
-
-                    <div class="flex flex-col items-start">
-                        <span class="text-[20px] font-bold">{{chapters.name_simple}}</span>
-                        <span class="text-[16px] font-bold text-gray-500">{{chapters.translated_name.name}}</span>
+                    <div class="flex flex-col items-start w-[160px] lg:w-auto overflow-hidden lg:ml-1 ml-3">
+                        <span class="text-[20px] font-bold overflow-hidden text-ellipsis whitespace-nowrap">{{chapters.name_simple}}</span>
+                        <span class="text-[16px] font-bold text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">{{chapters.translated_name.name}}</span>
                     </div>
 
-                    <div class="pt-8">
-                        <span class=" text-[16px] font-bold">{{chapters.verses_count}} ayahs</span>
+                    <div class="pt-8 overflow-hidden text-ellipsis whitespace-nowrap">
+                        <span class="lg:text-[16px] text-[11px] font-bold ">{{chapters.verses_count}} ayahs</span>
                     </div>
-
-
                 </button>
 
 

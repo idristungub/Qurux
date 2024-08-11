@@ -5,22 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/methods/arrayMatch.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AchievedUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AchievedUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_07_22_131255_create_achieved_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_07_22_131255_create_achieved_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AchievementSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ChapterQuizDialogMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LeaderboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/InputLabel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/InputLabel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/JuzQuizDialogMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/JuzQuizDialogMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/PrimaryButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/PrimaryButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/TextInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/TextInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Achievements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Achievements.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/JuzEasyQuiz.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Leaderboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Leaderboard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizAdvance.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +319,7 @@
       <workItem from="1723121342730" duration="19087000" />
       <workItem from="1723219666133" duration="26265000" />
       <workItem from="1723289182450" duration="19113000" />
-      <workItem from="1723375540388" duration="12397000" />
+      <workItem from="1723375540388" duration="25688000" />
     </task>
     <servers />
   </component>
