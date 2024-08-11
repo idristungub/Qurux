@@ -1,11 +1,12 @@
 <h1>Qurux</h1>
   <p>
-    Welcome to Qurux! This application offers a fun and interactive way to test your knowledge of the Quran. With quizzes of varying difficulty levels, users can challenge themselves with easy and advanced questions. The project includes achievements and leaderboards, encouraging friendly competition and aiding in memorization of the Quran.
+    Welcome to Qurux! This application will provide a fun and good understanding of the quran for those who already understand how to read the arabic language so beginner quran readers essentially. Try giving the audio a go if you misheard some of the words of a verse. Its mostly tailored towards muslims who have a memorisation difficulty so i made a place for them to learn and memorise the holy quran!
   </p>
 
   <h2>Features</h2>
   <ul>
     <li>Quizzes with Easy and Advanced difficulties</li>
+    <li>Quizzes from learning each chapter to learning each section also known as Juz</li>
     <li>Achievements for reaching specific milestones</li>
     <li>Leaderboards to compete with other users</li>
     <li>User authentication and profile management</li>
