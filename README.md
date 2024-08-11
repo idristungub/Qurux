@@ -56,7 +56,8 @@ composer install</code></pre>
   <p>Once the application is running, you can access it by navigating to <code>http://localhost:3000</code> for the frontend and <code>http://localhost:8000</code> for the backend. Create an account or log in, select a quiz, and start testing your knowledge!</p>
 
   <h2>Screenshots</h2>
-  ![ss1](https://github.com/user-attachments/assets/d51dc2aa-e629-4c76-ac94-d416adf2a1e2)
+  
+![ss1](https://github.com/user-attachments/assets/d51dc2aa-e629-4c76-ac94-d416adf2a1e2)
   
 ![ss3](https://github.com/user-attachments/assets/e25d4c5b-e290-417b-be77-4b746b42de8f)
 
