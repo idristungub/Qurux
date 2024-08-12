@@ -101,15 +101,4 @@ Route::middleware('auth')->group(function () {
 
 });
 
-//// get islamic information from user after registering
-//Route::get('/islamic-information', [IslamicProfileController::class,'create'])->name('create-profile');
-//Route::post('/islamic-information', [IslamicProfileController::class,'store'])->name('islamic-information.create');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__.'/auth.php';

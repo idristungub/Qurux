@@ -5,7 +5,6 @@ import {onMounted, reactive, ref} from "vue";
 import {Icon} from '@iconify/vue'
 import axios from "axios";
 import ChapterQuizDialogMenu from "@/Components/ChapterQuizDialogMenu.vue";
-import {getDuplicates} from "../../methods/findDuplicates";
 import JuzQuizDialogMenu from "@/Components/JuzQuizDialogMenu.vue";
 
 

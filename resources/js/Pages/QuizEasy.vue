@@ -5,7 +5,6 @@ import NavBar from "@/Layouts/NavBar.vue";
 import {shuffleArray} from "../../methods/shuffleArray";
 import {Icon} from "@iconify/vue";
 import {router, Link} from "@inertiajs/vue3";
-import {findDuplicates, getDuplicates} from "../../methods/findDuplicates";
 
 
 let props = defineProps( {
