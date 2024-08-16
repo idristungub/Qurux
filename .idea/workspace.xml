@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JuzAdvanceQuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JuzAdvanceQuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/library/FetchData.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/DropBox.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/methods/findDuplicates.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/methods/reorderWordsInArray.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +305,7 @@
       <workItem from="1723219666133" duration="26265000" />
       <workItem from="1723289182450" duration="19113000" />
       <workItem from="1723375540388" duration="26144000" />
-      <workItem from="1723472462222" duration="1539000" />
+      <workItem from="1723472462222" duration="2062000" />
     </task>
     <servers />
   </component>
