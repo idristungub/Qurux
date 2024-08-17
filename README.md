@@ -45,8 +45,8 @@ composer install</code></pre>
       <li>
           You may have to run Apache server and mySQL using XAMPP Control Panel <a href='https://www.apachefriends.org/download.html'>XAMPP download</a>
       </li>
-    <li>Run database migrations:
-      <pre><code>php artisan migrate</code></pre>
+    <li>Run database migrations and seed users and achievements:
+      <pre><code>php artisan migrate --seed</code></pre>
     </li>
     <li>Start the development server:
       <ul>
