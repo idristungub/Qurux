@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuizEasy.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_13_101333_create_achievements_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,6 +310,8 @@
       <workItem from="1723809395028" duration="1318000" />
       <workItem from="1723891209743" duration="41000" />
       <workItem from="1723915442393" duration="69000" />
+      <workItem from="1723918258294" duration="855000" />
+      <workItem from="1723921223495" duration="411000" />
     </task>
     <servers />
   </component>

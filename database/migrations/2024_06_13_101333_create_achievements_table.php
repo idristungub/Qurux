@@ -16,6 +16,22 @@ return new class extends Migration
             $table->longText('achievement_title');
             $table->timestamps();
         });
+
+        // inserting achievements
+        DB::table('achievements')->insert(
+            array(
+                'achievement_title' => 'Reach top 3 in the leaderboard',
+                'created_at' => now(),
+                'updated_at' => now()
+            )
+        );
+        DB::table('achievements')->insert(
+            array(
+                'achievement_title' => 'Bookmark 10 Surahs/Juz',
+                'created_at' => now(),
+                'updated_at' => now()
+            )
+        );
     }
 
     /**
