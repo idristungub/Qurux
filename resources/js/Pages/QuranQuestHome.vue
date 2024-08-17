@@ -76,7 +76,7 @@ axios.get('https://api.quran.com/api/v4/juzs')
 
 
         newJuzResponse.value = uniqueJuzNumbers;
-        console.log("new array jor juz: ",  uniqueJuzNumbers)
+
 
     })
 
@@ -147,7 +147,7 @@ const selectedChapter = ref(null)
 const openChapterDialogModal = (chapters: any) => {
     isOpen.value = !isOpen.value
     selectedChapter.value = chapters
-    console.log('is open chapter dialog is: ', isOpen.value)
+
 }
 
 // opening dialog of juz
@@ -156,7 +156,7 @@ const selectedJuz = ref(null)
 const openJuzDialogModal = (juz: any) => {
     isOpenJuz.value = !isOpenJuz.value
     selectedJuz.value = juz
-    console.log(Number(selectedJuz.value.juz_number))
+
 
 }
 

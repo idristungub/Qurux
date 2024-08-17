@@ -48,8 +48,6 @@ const fetchVerseData = async () => {
                 return acc;
             }, []);
 
-            console.log(verseArabicLong)
-            console.log(verseArabic)
 
             verses.value = {
                 arabicName: response.data.surahName,
@@ -73,7 +71,7 @@ onMounted(() => {
     fetchVerseData();
 });
 watch(verseId,fetchVerseData)
-console.log(watch(verseId,fetchVerseData))
+
 
 
 
@@ -94,7 +92,7 @@ const startDrag = (event: DragEvent, verseObj: { word: string, index: number }) 
         event.dataTransfer.dropEffect = 'move';
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.setData('text/plain', JSON.stringify(verseObj));
-        console.log(verseObj);
+
     }
 };
 
@@ -104,7 +102,7 @@ const clickOnVerse = (event: MouseEvent, verseObj: { word: string, index: number
     answers.value.push(verseObj);
     verses.value.actual_verse = verses.value.actual_verse.filter(item => item.index !== verseObj.index);
 
-    console.log('answers are', answers.value);
+
 };
 
 
@@ -116,7 +114,7 @@ const drop = (event: DragEvent) => {
         answers.value.push(droppedData);
         verses.value.actual_verse = verses.value.actual_verse.filter(item => item.index !== droppedData.index);
 
-        console.log('answers are', answers.value);
+
     }
 };
 
@@ -127,7 +125,7 @@ const onDeleteWord = (verseObj: { word: string, index: number }) => {
     }
     answers.value = answers.value.filter(item => item.index !== verseObj.index);
     verses.value.actual_verse.push(verseObj);
-    console.log('list of words are', verses.value.actual_verse);
+
 };
 // on delete all verses from
 const onDeleteAll = () => {
@@ -155,8 +153,6 @@ const checkAnswer =  (answers: string[]) => {
 
     const answersWordsJoined2 = ' ' + answersWordsJoined.join(' ')
 
-    console.log("users guess: ", answersWordsJoined.join(' '))
-    console.log("the answer joined is: ", verses.value.answer)
     if(answersWordsJoined.join(' ') === verses.value.answer || answersWordsJoined2 === verses.value.answer) {
         showCorrect.value = true
         showIncorrect.value = false
@@ -173,7 +169,6 @@ const checkAnswer =  (answers: string[]) => {
         // audio incorrect noise will play when showIncorrect is true
         healthPoints.value = Math.max(0, healthPoints.value - 1)
         axios.post('/checkHealth')
-            .then(response => console.log('health status: ',response.data.health_status))
             .catch(err => console.log(err.data.error))
         if(healthPoints.value <= 0) {
             onFinish.value = true
@@ -206,7 +201,6 @@ const deleteBookmarkAlert = ref('')
 
 const toggleBookmarks = async () => {
     isBookmarked.value = !isBookmarked.value
-    console.log(isBookmarked.value)
     if(isBookmarked.value == true) {
         await axios.post(`/bookmarks/easy/juz/${props.juzId}/${props.chapterId}/${verseId.value}`)
             .then(response => {

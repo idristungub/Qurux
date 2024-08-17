@@ -28,17 +28,13 @@ onMounted( () =>  {
     })
         .then(response => {
             const ayahData = response.data.data.ayahs
-            console.log(response.data.data.ayahs)
             verses.value = response.data.data.ayahs
             firstVerseId.value = ayahData[0].numberInSurah
             firstChapterId.value = ayahData[0].surah.number
             lastVerseId.value = ayahData[ayahData.length - 1].numberInSurah
             lastChapterId.value = ayahData[ayahData.length - 1].surah.number
 
-            console.log('first verse of juz ', firstVerseId.value)
-            console.log('first chapter of juz ', firstChapterId.value)
-            console.log('last verse of juz ', lastVerseId.value)
-            console.log('last chapter of juz ', lastChapterId.value)
+
         })
 })
 

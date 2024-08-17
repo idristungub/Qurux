@@ -69,8 +69,6 @@ const fetchVerses = () => {
 
                     sortedVerseIds.value = fetchedVerses.map(verse => verse.verseId);
 
-                    console.log("Shuffled Verse IDs for display: ", verses.value);
-                    console.log("Sorted Verse IDs: ", sortedVerseIds.value);
                 }
             })
             .catch(err => console.log(err));
@@ -150,7 +148,7 @@ const toggleOrder = (index: number) => {
 
 
         }
-        console.log("for each click the verseOrder: ", verseOrder.value)
+
     } else {
         const removedOrder = verseOrder.value[index];
         verseOrder.value[index] = null
@@ -189,8 +187,7 @@ const checkAnswer = () => {
         return verse.id
     })
 
-    console.log("User's order (verseOrder): ", verseOrder.value);
-    console.log("Correct order: ", verseIdArray);
+
 
 
     if(verseOrder.value[0] === verses.value[0].id
@@ -207,7 +204,6 @@ const checkAnswer = () => {
             // audio incorrect noise will play when showIncorrect is true
             healthPoints.value = Math.max(0, healthPoints.value - 1)
             axios.post('/checkHealth')
-                .then(response => console.log(response.data.health_status))
                 .catch(err => console.log(err.data.error))
             if(healthPoints.value <= 0) {
                 onFinish.value = true
