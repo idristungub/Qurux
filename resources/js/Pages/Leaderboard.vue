@@ -1,10 +1,28 @@
 <script setup lang="ts">
 
 import NavBar from "@/Layouts/NavBar.vue";
+import axios from "axios";
+import {onMounted} from "vue";
+import {usePage} from "@inertiajs/vue3";
 
 const props = defineProps({
     topThree: Array,
     leaderboardUsers: Array,
+})
+
+const page = usePage()
+
+const authUser = page.props.auth.user.username
+const handleLeaderboardAchievement = () => {
+    const topThreeUsernames = props.topThree.map(user => user.username)
+    if(topThreeUsernames.includes(authUser)) {
+        axios.post('/top3Achievement')
+            .then(res => console.log(res.data))
+    }
+}
+
+onMounted(() => {
+    handleLeaderboardAchievement()
 })
 </script>
 

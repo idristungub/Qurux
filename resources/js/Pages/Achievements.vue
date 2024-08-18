@@ -1,34 +1,41 @@
 <script setup lang="ts">
 import NavBar from "@/Layouts/NavBar.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {Icon} from "@iconify/vue";
 import axios from "axios";
 
 const props = defineProps( {
     achievementOneTitle: String,
-    achievementTwoTitle: String
+    achievementTwoTitle: String,
+    achievedOne: Array,
+    achievedTwo: Array
 
 })
 
-const achievedOne = ref(false)
-const achievedTwo = ref(false)
+
+const achievedOneTick = ref(false)
+const achievedTwoTick = ref(false)
 
 
 // check if response is true then change achieved to true
-axios.get('/top3Achievement')
-    .then(response => {
-        if(response.data.message === 'achievedOne') {
-            achievedOne.value = true
-        }
-    })
+// maybe so switch case for this later
+const handleAchievments = () => {
+    if(Array.isArray(props.achievedOne) && props.achievedOne.length > 0) {
+        achievedOneTick.value = true
+        console.log(props.achievedOne)
+    }
+    if(Array.isArray(props.achievedTwo) && props.achievedTwo.length > 0) {
+        achievedTwoTick.value = true
+        console.log(props.achievedTwo)
+    }
+
+}
 
 
-axios.get('/bookmarkAchievement')
-    .then(response => {
-        if(response.data.message === 'achievedTwo') {
-            achievedTwo.value = true
-        }
-    })
+onMounted(() => {
+    handleAchievments()
+})
+
 
 
 
@@ -57,7 +64,7 @@ axios.get('/bookmarkAchievement')
                     class="flex justify-center items-center lg:w-[34px] w-[40px] h-[34px] bg-gray-300 rounded-[10px] border-2 border-[#D2B721]"
                 >
 <!--                    green tick if completed-->
-                    <Icon v-if="achievedOne" class="text-green-600"  icon="subway:tick" />
+                    <Icon v-if="achievedOneTick" class="text-green-600"  icon="subway:tick" />
 
 
                 </div>
@@ -75,7 +82,7 @@ axios.get('/bookmarkAchievement')
                     class="flex justify-center items-center lg:w-[34px] w-[40px] h-[34px] bg-gray-300 rounded-[10px] border-2 border-[#D2B721]"
                 >
                     <!--                    green tick if completed-->
-                    <Icon v-if="achievedTwo" class="text-green-600"  icon="subway:tick" />
+                    <Icon v-if="achievedTwoTick" class="text-green-600"  icon="subway:tick" />
 
 
                 </div>

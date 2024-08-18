@@ -16,15 +16,20 @@ class AchievementController extends Controller
 {
 
     public function create() {
+        $user = Auth::user();
         // display 2 achievements from the database for all users
         $achievementOneTitle = Achievement::where('id', 1)->pluck('achievement_title');
         $achievementTwoTitle = Achievement::where('id', 2)->pluck('achievement_title');
+        $achievedOne = AchievedUser::where('users_id', $user->id)->where('achievements_id', 1)->get();
+        $achievedTwo = AchievedUser::where('users_id', $user->id)->where('achievements_id', 2)->get();
 
 
 
         return Inertia::render('Achievements', [
             'achievementOneTitle' => $achievementOneTitle,
             'achievementTwoTitle' => $achievementTwoTitle,
+            'achievedOne' => $achievedOne,
+            'achievedTwo' => $achievedTwo,
 
             ]);
     }
@@ -34,19 +39,13 @@ class AchievementController extends Controller
     {
         // get top 3 if user is found then request true
         $user = Auth::user();
-        $userByPoints = User::where('user_id', $user->id)->orderBy('points', 'desc')->take(3)->get();
 
-        if(!$userByPoints->isEmpty()) {
-
-            $getTop3Achievement = Achievement::where('id', '=', 3)->firstOrFail();
-            $achievedOne = AchievedUser::updateOrCreate([
-                'completed' => true,
-                'user_id' => $user->id,
-                'achievements_id' => $getTop3Achievement
-            ]);
-
-            return response($achievedOne)->json(['message' => 'achievedOne']);
-        }
+        $getTop3Achievement = Achievement::where('id', '=', 1)->firstOrFail();
+        AchievedUser::updateOrCreate([
+            'completed' => true,
+            'users_id' => $user->id,
+            'achievements_id' => $getTop3Achievement->id
+        ]);
 
     }
 
@@ -55,24 +54,17 @@ class AchievementController extends Controller
     {
         $user = Auth::user();
 
-        $bookmarksLength = Quizstats::where('user_id', $user->id)->where('bookmarked', true)->count();
-
-        // find the length of the bookmarked rows if 10 then achieved_points
-        if($bookmarksLength == 10) {
-            $bookmarkAchievement = Achievement::where('id', '=', 4)->firstOrFail();
-            $achievedTwo = AchievedUser::updateOrCreate([
+        $bookmarked = Quizstats::where('user_id', $user->id)->where('bookmarked', '=', 1)->get();
+        $bookmarkAchievement = Achievement::where('id', '=', 2)->firstOrFail();
+        if($bookmarked->count() >= 10){
+            AchievedUser::updateOrCreate([
                 'completed' => true,
                 'users_id' => $user->id,
-                'achievements_id' => $bookmarkAchievement
+                'achievements_id' => $bookmarkAchievement->id
             ]);
-
-            return response($achievedTwo)->json(['message' => 'achievedTwo']);
-
         }
 
+
     }
-
-
-
 
 }

@@ -100,6 +100,13 @@ onMounted( () => {
         })
 })
 
+const handleBookmarkAchievement = () => {
+    axios.post('/bookmarkAchievement')
+}
+onMounted(() => {
+    handleBookmarkAchievement()
+})
+
 const deleteBookmarks = (index: number) => {
     const bookmarksToDelete = bookmarks.value[index]
     axios.delete(`/bookmarks/delete/${bookmarksToDelete.chapter_number}/${bookmarksToDelete.verse_number}`)

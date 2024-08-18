@@ -19,7 +19,7 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        $bookmarks = Quizstats::where('bookmarked',true)->where('user_id', Auth::user()->id)->take(7)->get();
+        $bookmarks = Quizstats::where('bookmarked',true)->where('user_id', Auth::user()->id)->take(10)->get();
 
         return response()->json($bookmarks);
     }
@@ -44,19 +44,6 @@ class BookmarkController extends Controller
             'bookmarked' => true,
             'recent' => false
         ]);
-
-        // count number of bookmarks for user
-        $bookmarksLength = Quizstats::where('user_id', $user->id)->where('bookmarked', true)->count();
-
-        // find the length of the bookmarked rows if 10 then achieved_points
-        if($bookmarksLength == 10) {
-            $bookmarkAchievement = Achievement::where('id', '=', 4)->firstOrFail();
-            AchievedUser::updateOrCreate([
-                'completed' => true,
-                'users_id' => $user->id,
-                'achievements_id' => $bookmarkAchievement
-            ]);
-        }
 
         return response()->json(['message' => "You have bookmarked Surah $chapter, verse $verse" ]);
 
