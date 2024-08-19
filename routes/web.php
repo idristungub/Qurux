@@ -14,11 +14,18 @@ use App\Http\Controllers\RecentController;
 use App\library\FetchData;
 use App\Models\Quizstats;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// auto run migrations
+Route::get('/run-migration', function () {
+    Artisan::call('optimize:clear');
+    Artisan::call('migrate:fresh');
+});
 
 
 
