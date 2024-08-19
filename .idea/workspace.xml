@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AchievementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookmarkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Achievements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Achievements.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Leaderboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Leaderboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qurux.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +312,7 @@
       <workItem from="1723915442393" duration="69000" />
       <workItem from="1723918258294" duration="855000" />
       <workItem from="1723921223495" duration="1505000" />
-      <workItem from="1724008667076" duration="10381000" />
+      <workItem from="1724008667076" duration="11201000" />
     </task>
     <servers />
   </component>
