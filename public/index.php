@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 define('LARAVEL_START', microtime(true));
 
@@ -8,6 +9,12 @@ define('LARAVEL_START', microtime(true));
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
+
+if(DB::connection()->getDatabaseName()){
+    echo "connected to database ".DB::connection()->getDatabaseName();
+}
+$response = '';
+$response->send();
 
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
