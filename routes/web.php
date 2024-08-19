@@ -24,7 +24,7 @@ use Inertia\Inertia;
 // auto run migrations
 Route::get('/run-migration', function () {
     Artisan::call('optimize:clear');
-    Artisan::call('migrate:fresh');
+    Artisan::call('migrate:refresh');
 });
 
 
