@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/public.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/qurux.zip" beforeDir="false" afterPath="$PROJECT_DIR$/qurux.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +315,7 @@
       <workItem from="1724025607882" duration="64000" />
       <workItem from="1724026577620" duration="94000" />
       <workItem from="1724028034591" duration="1409000" />
-      <workItem from="1724065708380" duration="1594000" />
+      <workItem from="1724065708380" duration="3257000" />
     </task>
     <servers />
   </component>
