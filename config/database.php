@@ -41,9 +41,9 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('RDS_HOSTNAME', '127.0.0.1'),
+            'host' => env('RDS_HOSTNAME', 'awseb-e-txdxtubmeu-stack-awsebrdsdatabase-vlq4nem9bkfo.cl644cuwazbd.eu-west-2.rds.amazonaws.com'),
             'port' => env('RDS_PORT', '3306'),
-            'database' => env('RDS_DB_NAME', 'laravel'),
+            'database' => env('RDS_DB_NAME', 'ebdb'),
             'username' => env('RDS_USERNAME', 'root'),
             'password' => env('RDS_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
