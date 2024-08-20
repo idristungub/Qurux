@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'username' => fake()->unique()->userName(),
-            'points' => fake()->numberBetween(1,1000),
+            'points' => fake()->numberBetween(1,400),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

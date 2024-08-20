@@ -148,6 +148,7 @@ const isToggle = () => {
 }
 
 // opening dialog menu of juz
+// i hate typescript its shitttt
 
 const isOpen = ref(false)
 const selectedChapter = ref(null)
@@ -159,7 +160,7 @@ const openChapterDialogModal = (chapters: any) => {
 
 // opening dialog of juz
 const isOpenJuz = ref(false)
-const selectedJuz = ref(null)
+const selectedJuz = ref<number>(null)
 const openJuzDialogModal = (juz: any) => {
     isOpenJuz.value = !isOpenJuz.value
     selectedJuz.value = juz
