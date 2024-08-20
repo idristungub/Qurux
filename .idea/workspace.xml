@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/QuranQuestHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +316,7 @@
       <workItem from="1724026577620" duration="94000" />
       <workItem from="1724028034591" duration="1409000" />
       <workItem from="1724065708380" duration="15806000" />
-      <workItem from="1724171248078" duration="1728000" />
+      <workItem from="1724171248078" duration="4959000" />
     </task>
     <servers />
   </component>

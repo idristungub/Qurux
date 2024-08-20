@@ -20,7 +20,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/4.0.0/vuedraggable.umd.min.js"></script>
 
         @routes
-        @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+        @vite('resources/js/app.js')
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
