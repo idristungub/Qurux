@@ -38,21 +38,21 @@ onMounted(() => {
             <div class="flex justify-between items-center lg:gap-[100px]">
 
                 <div class="flex justify-center items-center flex-col">
-                    <p class="text-[25px] font-bold">2.</p>
-                    <p class="text-[25px] font-bold">{{props.topThree[1].username}}</p>
-                    <p class="text-gray-400 text-[20px] font-bold">{{props.topThree[1].points}}</p>
+                    <p class="lg:text-[25px] font-bold">2.</p>
+                    <p class="lg:text-[25px] font-bold">{{props.topThree[1].username}}</p>
+                    <p class="text-gray-400 lg:text-[20px] font-bold">{{props.topThree[1].points}}</p>
                 </div>
 
                 <div class="flex justify-center items-center flex-col mb-[160px]">
                     <img src="/assets/firstPlace.png">
-                    <p class="text-[25px] font-bold">{{props.topThree[0].username}}</p>
-                    <p class="text-gray-400 text-[20px] font-bold">{{props.topThree[0].points}}</p>
+                    <p class="lg:text-[25px] font-bold">{{props.topThree[0].username}}</p>
+                    <p class="text-gray-400 lg:text-[20px] font-bold">{{props.topThree[0].points}}</p>
                 </div>
 
                 <div class="flex justify-center items-center flex-col">
-                    <p class="text-[25px] font-bold">3.</p>
-                    <p class="text-[25px] font-bold">{{props.topThree[2].username}}</p>
-                    <p class="text-gray-400 text-[20px] font-bold">{{props.topThree[2].points}}</p>
+                    <p class="lg:text-[25px] font-bold">3.</p>
+                    <p class="lg:text-[25px] font-bold">{{props.topThree[2].username}}</p>
+                    <p class="text-gray-400 lg:text-[20px] font-bold">{{props.topThree[2].points}}</p>
                 </div>
 
             </div>
