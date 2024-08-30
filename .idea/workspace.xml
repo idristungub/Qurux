@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="changed slogan at home page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Auth/AuthenticationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Auth/AuthenticationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Auth/EmailVerificationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Auth/EmailVerificationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Auth/RegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Auth/RegistrationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/HttpRequestTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProfileTest.php" beforeDir="false" />
-    </list>
+    <list default="true" id="eac363d7-917e-4fe5-8a68-4348c2fe0aff" name="Changes" comment="changed slogan at home page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -337,7 +328,7 @@
       <workItem from="1724701762128" duration="634000" />
       <workItem from="1724741557945" duration="641000" />
       <workItem from="1724985778779" duration="2986000" />
-      <workItem from="1725018344428" duration="3082000" />
+      <workItem from="1725018344428" duration="3653000" />
     </task>
     <task id="LOCAL-00001" summary="completed build">
       <option name="closed" value="true" />
