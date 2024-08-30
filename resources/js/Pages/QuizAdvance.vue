@@ -313,7 +313,7 @@ const handleNextQuestion = () => {
 
     <div v-if="showIncorrect" class="flex  bg-red-400 w-full lg:h-[100px] h-[130px] justify-between items-center pr-[50px] duration-500 lg:mt-[130px] ">
         <audio autoplay src="/assets/incorrect%20answer%20(qurux).mp3"></audio>
-        <div class="flex gap-3 lg:text-[40px] text-[16px] items-center pl-10 ">
+        <div class="flex gap-3 lg:text-[40px] text-[20px] items-center pl-10 ">
             <Icon icon="raphael:cross" class="text-red-600" />
             <p>Oh No! You got it wrong (watch your health!)</p>
         </div>

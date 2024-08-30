@@ -39,7 +39,7 @@ const toggleMenu = () => {
         <div v-if="isMenuOpen" id="nav" class="mobile-menu absolute flex flex-col items-center bg-[#6B8F71] w-full lg:top-[99px] top-[60px] right-0 z-1000">
             <div v-if="$page.props.auth.user">
                 <hr class="h-px my-5 bg-white border-0">
-                <Link class="text-white" :href="route('quran-quest.home')">QuranQuest</Link>
+                <Link class="text-white" :href="route('quran-quest.home')">Home</Link>
                 <div class="font-bold text-white">
                     <hr class="h-px my-5 bg-white border-0 w-[321.14px]">
                     {{ $page.props.auth.user.username }} (Points: {{$page.props.auth.user.points}})
