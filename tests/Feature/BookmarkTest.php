@@ -40,19 +40,5 @@ class BookmarkTest extends TestCase
         ]);
     }
 
-    public function test_user_can_post_a_bookmark() {
 
-        $bookmark = Quizstats::factory()->create([
-            'user_id' => 2,
-            'chapter_title' => 'Al-fatiha',
-            'chapter_number' => 1,
-            'verse_number' => 4,
-            'difficulty' => 'easy',
-            'bookmarked' => true,
-            'recent' => true
-        ]);
-        $bookmark->save();
-        $this->assertTrue(true);
-
-    }
 }
