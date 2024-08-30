@@ -38,7 +38,6 @@ class QuizTest extends TestCase
 
         $easyQuizResponse = $this->post('/checkPointsEasy');
         $easyQuizResponse->assertStatus(200);
-        $user->refresh();
 
 
         // test easy quiz gain points by 1
@@ -58,7 +57,7 @@ class QuizTest extends TestCase
 
         $advancedQuizResponse = $this->post('/checkPointsAdvance');
         $advancedQuizResponse->assertStatus(200);
-        $user->refresh();
+
         // test advance quiz gain points by 5
         $this->assertEquals(5, $user->points, 'user gains 5 points when getting it correct for advanced quiz');
 
